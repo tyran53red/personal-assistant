@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Personal Assistant</string>
+    <string name="main_activity_header">Головна</string>
+
+    <!-- Global menu -->
+    <string name="main_item">Головна</string>
+    <string name="schedule_item">Розклад</string>
+    <string name="status_item">Статус</string>
+    <string name="lecturers_item">Викладачі</string>
+    <string name="location_item">Місцезнаходження</string>
+    <string name="search_item">Пошук</string>
+    <string name="settings_item">Налаштування</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="row_image_default_text">No image</string>
+
+    <!-- Main Fragment -->
+    <string name="default_time">hh:mm</string>
+    <string name="default_date">dd:mm:yy</string>
+
+    <!-- Days shortcut -->
+    <string name="sun">НД</string>
+    <string name="mon">ПН</string>
+    <string name="tue">ВТ</string>
+    <string name="wen">СР</string>
+    <string name="thu">ЧТ</string>
+    <string name="fri">ПТ</string>
+    <string name="sat">СБ</string>
+
+    <!-- Months R -->
+    <string name="january_r">Січня</string>
+    <string name="february_r">Лютого</string>
+    <string name="march_r">Березня</string>
+    <string name="april_r">Квітня</string>
+    <string name="may_r">Травня</string>
+    <string name="june_r">Червня</string>
+    <string name="july_r">Липня</string>
+    <string name="august_r">Серпня</string>
+    <string name="september_r">Вересня</string>
+    <string name="october_r">Жовтня</string>
+    <string name="november_r">Листопада</string>
+    <string name="december_r">Грудня</string>
+    <string name="location_cell_search">Пошук</string>
+    <string name="title_activity_location">LocationActivity</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+    <string name="action_settings">Settings</string>
+    
+    <string name="location_tab_1">КАФЕДРА</string>
+    <string name="location_tab_2">ІНШІ</string>
+</resources>

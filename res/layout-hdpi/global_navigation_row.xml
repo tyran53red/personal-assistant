@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/globalMenuRow"
+    android:orientation="horizontal" 
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:padding="@dimen/navigation_layout_padding">
+
+    <TextView
+        android:id="@+id/imgGlobalRow"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:gravity="center_vertical"
+        android:layout_marginRight="@dimen/navigation_row_image_margin_right"
+        android:layout_marginTop="@dimen/navigation_row_image_margin_top"
+        android:layout_marginBottom="@dimen/navigation_row_image_margin_bottom" />
+     <TextView
+         android:id="@+id/txtGlobalRow"
+         android:layout_width="fill_parent"
+         android:layout_height="fill_parent"
+         android:layout_marginBottom="@dimen/navigation_row_text_margin"
+         android:layout_marginTop="@dimen/navigation_row_text_margin"
+         android:gravity="center_vertical"
+         android:textColor="@color/navigation_row_text_color"
+         android:textSize="@dimen/navigation_row_text_size"
+         android:textStyle="bold" />
+        
+</LinearLayout>

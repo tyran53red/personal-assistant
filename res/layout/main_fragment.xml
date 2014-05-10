@@ -1,0 +1,45 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.personalassistant.ui.main.MainFragment" >
+
+    <LinearLayout
+        android:id="@+id/time_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/main_time_margin"
+        android:background="@drawable/main_time_shape"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/main_clock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="Tahoma"
+            android:gravity="center"
+            android:text="@string/default_time"
+            android:textSize="@dimen/main_clock_text_size" />
+
+        <TextView
+            android:id="@+id/main_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="Tahoma"
+            android:gravity="center"
+            android:text="@string/default_date"
+            android:textSize="@dimen/main_date_text_size" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/main_fragment_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="false"
+        android:drawSelectorOnTop="false" >
+
+    </ListView>
+
+</LinearLayout>

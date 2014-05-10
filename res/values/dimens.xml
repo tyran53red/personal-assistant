@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="navigation_drawer_width">275dp</dimen>
+    <dimen name="navigation_layout_padding">10dp</dimen>
+    <dimen name="navigation_header_text_size">22sp</dimen>
+    <dimen name="navigation_header_padding">10dp</dimen>
+    <dimen name="navigation_row_text_size">22sp</dimen>
+    <dimen name="navigation_row_image_margin_right">15dp</dimen>
+    <dimen name="navigation_row_image_margin_top">5dp</dimen>
+    <dimen name="navigation_row_image_margin_bottom">5dp</dimen>
+    <dimen name="navigation_row_text_margin">5dp</dimen>
+    <dimen name="main_clock_text_size">48dp</dimen>
+    <dimen name="main_date_text_size">36dp</dimen>
+    <dimen name="main_time_border_radius">12dp</dimen>
+    <dimen name="main_time_margin">12dp</dimen>
+    <dimen name="main_time_padding">5dp</dimen>
+    <dimen name="main_time_border_width">2dp</dimen>
+    <dimen name="main_list_view_row_top_text_size">18sp</dimen>
+    <dimen name="main_list_view_row_top_text_middle">18sp</dimen>
+    <dimen name="main_list_view_row_top_text_bottom">18sp</dimen>
+    <dimen name="location_cell_top_text_size">25sp</dimen>
+    <dimen name="location_cell_middle_text_size">25sp</dimen>
+    <dimen name="location_cell_padding">20dp</dimen>
+    <dimen name="location_tab_text_size">20dp</dimen>
+    <dimen name="location_tab_content_space">10dp</dimen>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="tab_padding">10dp</dimen>
+
+    <dimen name="schedule_list_view_row_top_text_size">18sp</dimen>
+    <dimen name="schedule_list_view_row_top_text_middle">18sp</dimen>
+    <dimen name="schedule_list_view_row_top_text_bottom">18sp</dimen>
+</resources>

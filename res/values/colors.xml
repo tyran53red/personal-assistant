@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="time_border_color">#000000</color>
+    <color name="app_background">#E4E4E4</color>
+
+    <color name="global_menu_row_selected">#ffffff</color>
+    
+    <color name="navigation_header_background">#3F5CA9</color>
+    <color name="navigation_header_text_color">#FFFFFF</color>
+ 
+    <color name="navigation_row_text_color">#000000</color>
+    
+    <!-- Metro colors -->
+    <color name="metro_color_008299">#008299</color>
+    <color name="metro_color_2672EC">#2672EC</color>
+    <color name="metro_color_8C0095">#8C0095</color>
+    <color name="metro_color_5133AB">#5133AB</color>
+    <color name="metro_color_AC193D">#AC193D</color>
+    <color name="metro_color_D24726">#D24726</color>
+    <color name="metro_color_008A00">#008A00</color>
+    <color name="metro_color_094AB2">#094AB2</color>
+    
+    <color name="main_list_view_row_text_color">#FFFFFF</color>
+    <color name="schedule_list_view_row_text_color">#FFFFFF</color>
+    
+    <color name="locationrow_text_color">#FFFFFF</color>
+    
+    <!-- Single Tab -->
+    <color name="tab_background_color">#3F5CA9</color>
+    <color name="tab_text_color">#C6CEE5</color>
+    <color name="tab_text_color_selected">#FFFFFF</color>
+    <color name="tab_bottom_selected">#FFFFFF</color>
+    <color name="tab_bottom_pressed">#6C7BA1</color>
+</resources>
