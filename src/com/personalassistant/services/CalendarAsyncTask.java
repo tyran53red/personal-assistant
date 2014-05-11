@@ -4,15 +4,13 @@ import java.io.IOException;
 
 import android.os.AsyncTask;
 
-import com.google.api.services.calendar.Calendar;
-
 public abstract class CalendarAsyncTask extends AsyncTask<Void, Void, Boolean> {
 	protected CalendarModel model = null;
-	protected Calendar client = null;
+	//protected Calendar client = null;
 
-	public CalendarAsyncTask(Calendar client) {
+	public CalendarAsyncTask(/*Calendar client*/) {
 		model = CalendarModel.getInstance();
-		this.client = client;
+		//this.client = client;
 	}
 
 	@Override
