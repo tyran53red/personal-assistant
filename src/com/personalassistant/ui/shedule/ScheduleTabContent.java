@@ -54,7 +54,14 @@ public class ScheduleTabContent extends Fragment {
 			
 			@Override
 			protected void onDayLoaded(List<AbstractLesson> lessons) {
-				ScheduleListItemAdapter scheduleListItemAdapter = new ScheduleListItemAdapter(getActivity(), R.layout.schedule_list_view_row, lessons.toArray(new ScheduleListItem[0]));
+				ScheduleListItem scheduleListItem[] = new ScheduleListItem[lessons.size()];
+				
+				int counter = 0;
+				for (AbstractLesson lesson : lessons) {
+					scheduleListItem[counter++] = new ScheduleListItem(lesson);
+				}
+				
+				ScheduleListItemAdapter scheduleListItemAdapter = new ScheduleListItemAdapter(getActivity(), R.layout.schedule_list_view_row, scheduleListItem);
 				listView.setAdapter(scheduleListItemAdapter);
 			}
 		};

@@ -1,5 +1,6 @@
 package com.personalassistant.services;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -8,47 +9,76 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
-import android.net.Uri;
-import android.provider.CalendarContract.Calendars;
 import android.provider.CalendarContract.Events;
 
 import com.personalassistant.App;
 import com.personalassistant.model.AbstractLesson;
+import com.personalassistant.model.LessonType;
 
 public abstract class LoadScheduleTask extends CalendarAsyncTask {
-	private Calendar calendar = null;
-	private Activity activity = null;
-	
 	public static final String[] EVENT_PROJECTION = new String[] {
-	    Calendars._ID,
-	    Calendars.CALENDAR_DISPLAY_NAME,
+		Events._ID,
+		Events.DTSTART,
+		Events.DTEND,
+		Events.RRULE,
+		Events.TITLE
 	};
-	  
-	private static final int PROJECTION_ID_INDEX = 0;
-	private static final int PROJECTION_DISPLAY_NAME_INDEX = 1;
 	
+	public static final String ORDER = Events.DTSTART;
+//	public static final String WHERE = "((" + Events.CALENDAR_ID + " = ?) AND (" + Events.DTSTART + " >= ?) AND (" + Events.DTEND + " <= ?))";
+	public static final String WHERE = "((" + Events.CALENDAR_ID + " = ?))";
+
+	private Calendar calendarStart = null;
+	private Calendar calendarEnd = null;
+	private Activity activity = null;
+	  
 	public LoadScheduleTask(Activity activity, Calendar calendar) {
 		this.activity = activity;
-		this.calendar = calendar;
+		this.calendarStart = Calendar.getInstance();
+		this.calendarEnd = Calendar.getInstance();
+		
+		this.calendarStart.set(
+				calendar.get(Calendar.YEAR),
+				calendar.get(Calendar.MONTH),
+				calendar.get(Calendar.DAY_OF_MONTH),
+				0, 0, 0);
+		
+		this.calendarEnd.set(
+				calendar.get(Calendar.YEAR),
+				calendar.get(Calendar.MONTH),
+				calendar.get(Calendar.DAY_OF_MONTH),
+				11, 59, 59);
 	}
 
 	@Override
 	protected void doInBackground() throws Exception {
 		SharedPreferences preferences = activity.getSharedPreferences(App.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
 		if (preferences.contains(App.SELECTED_SCHEDULE)) {
-			int value = preferences.getInt(App.SELECTED_SCHEDULE, 0);
+			long value = preferences.getLong(App.SELECTED_SCHEDULE, 0);
 		
 			ContentResolver contentResolver = activity.getContentResolver();
 			
-			Uri uri = Events.CONTENT_URI;   
+			Cursor cursor = contentResolver.query(Events.CONTENT_URI,
+					EVENT_PROJECTION,
+					WHERE,
+					new String[] {
+						String.valueOf(value),
+						// String.valueOf(calendarStart.getTimeInMillis()),
+						// String.valueOf(calendarEnd.getTimeInMillis())
+					},
+					ORDER);
 			
-			String[] proj = new String[] { Events._ID, Events.DTSTART, Events.DTEND, Events.RRULE, Events.TITLE };
-			Cursor cursor = contentResolver.query(uri, proj, Calendars._ID + " = ? ", new String[] { Long.toString(value) }, null);
-			if (cursor.moveToNext()) {
+			
+			List<AbstractLesson> lessons = new ArrayList<AbstractLesson>();
+			while(cursor.moveToNext()) {
+				AbstractLesson lesson = new AbstractLesson();
+				lesson.setName(cursor.getString(4));
+				lesson.setLessonType(LessonType.LAB);
 				
-				System.out.println(cursor.getString(4));
+				lessons.add(lesson);
 			}
 		
+			onDayLoaded(lessons);
 		}
 	}
 

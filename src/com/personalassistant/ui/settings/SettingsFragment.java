@@ -57,8 +57,18 @@ public class SettingsFragment extends Fragment implements OnItemSelectedListener
 				
 				SharedPreferences preferences = getActivity().getSharedPreferences(App.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
 				if (preferences.contains(App.SELECTED_SCHEDULE)) {
-					int value = preferences.getInt(App.SELECTED_SCHEDULE, 0);
-					spinner.setSelection(value);
+					long value = preferences.getLong(App.SELECTED_SCHEDULE, 0);
+					
+					int counter = 0;
+					for (SettingsScheduleItem item : scheduleItems) {
+						if (item.getId() == value) {
+							spinner.setSelection(counter);
+							break;
+						}
+						
+						counter++;
+					}
+					
 				}
 			}
 
@@ -73,7 +83,10 @@ public class SettingsFragment extends Fragment implements OnItemSelectedListener
 	public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 		SharedPreferences preferences = getActivity().getSharedPreferences(App.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
 		SharedPreferences.Editor editor = preferences.edit();
-		editor.putInt(App.SELECTED_SCHEDULE, position);
+		
+		long value = arrayAdapter.getItem(position).getId();
+		
+		editor.putLong(App.SELECTED_SCHEDULE, value);
 		editor.commit();
 	}
 
