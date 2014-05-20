@@ -26,6 +26,7 @@ import com.personalassistant.model.User;
 import com.personalassistant.model.UserRole;
 import com.personalassistant.ui.location.LocationFragment;
 import com.personalassistant.ui.main.MainFragment;
+import com.personalassistant.ui.settings.SettingsFragment;
 import com.personalassistant.ui.shedule.ScheduleFragment;
 
 public class NavigationDrawerFragment extends Fragment {
@@ -211,7 +212,7 @@ public class NavigationDrawerFragment extends Fragment {
     		
     		@Override
     		public Fragment getFragment() {
-    			return new MainFragment();
+    			return new SettingsFragment();
     		}
     		
     		@Override

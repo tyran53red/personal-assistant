@@ -14,7 +14,8 @@
         android:gravity="center"
         android:textSize="@dimen/location_cell_top_text_size"
         android:textStyle="bold"
-        android:textColor="@color/locationrow_text_color" />
+        android:textColor="@drawable/location_cell_text_selector"
+        android:drawableLeft="@drawable/location_cell_left_selector" />
 
     <TextView
         android:id="@+id/location_cell_middle"
@@ -24,6 +25,6 @@
         android:textAlignment="center"
         android:textSize="@dimen/location_cell_middle_text_size"
         android:textStyle="bold"
-        android:textColor="@color/locationrow_text_color" />
+        android:textColor="@drawable/location_cell_text_selector" />
 
 </LinearLayout>

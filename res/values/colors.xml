@@ -24,6 +24,7 @@
     <color name="schedule_list_view_row_text_color">#FFFFFF</color>
     
     <color name="locationrow_text_color">#FFFFFF</color>
+    <color name="locationrow_text_color_pressed">#C6CEE5</color>
     
     <!-- Single Tab -->
     <color name="tab_background_color">#3F5CA9</color>

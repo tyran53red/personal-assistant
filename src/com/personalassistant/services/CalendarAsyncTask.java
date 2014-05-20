@@ -1,54 +1,44 @@
 package com.personalassistant.services;
 
-import java.io.IOException;
 
-import android.os.AsyncTask;
-
-public abstract class CalendarAsyncTask extends AsyncTask<Void, Void, Boolean> {
-	protected CalendarModel model = null;
-	//protected Calendar client = null;
-
-	public CalendarAsyncTask(/*Calendar client*/) {
-		model = CalendarModel.getInstance();
-		//this.client = client;
-	}
-
+public abstract class CalendarAsyncTask implements Runnable {
+	
 	@Override
-	protected void onPreExecute() {
+	public void run() {
+		boolean onPreExec = false;
+		
 		try {
 			onPreExec();
-		} catch (IOException e) {
-			e.printStackTrace();
+			onPreExec = true;
+		} catch (Exception e) {
+			doException(e);
 		}
 		
-		super.onPreExecute();
-	}
-
-	@Override
-	protected final Boolean doInBackground(Void... ignored) {
-		try {
-			doInBackground();
+		if (onPreExec) {
+			boolean doInBackground = false;
 			
-			return true;
-		} catch (IOException e) {
-			e.printStackTrace();
+			try {
+				doInBackground();
+				doInBackground = true;
+			} catch (Exception e) {
+				doException(e);
+			}
+			
+			if (doInBackground) {
+				try {
+					onPostExec();
+				} catch (Exception e) {
+					doException(e);
+				}
+			}
 		}
-
-		return false;
+	}
+	
+	private void doException(Exception e) {
+		e.printStackTrace();
 	}
 
-	@Override
-	protected final void onPostExecute(Boolean success) {
-		try {
-			onPostExec();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		super.onPostExecute(success);
-	}
-
-	protected abstract void onPreExec() throws IOException;
-	protected abstract void doInBackground() throws IOException;
-	protected abstract void onPostExec() throws IOException;
+	protected abstract void onPreExec() throws Exception;
+	protected abstract void doInBackground() throws Exception;
+	protected abstract void onPostExec() throws Exception;
 }

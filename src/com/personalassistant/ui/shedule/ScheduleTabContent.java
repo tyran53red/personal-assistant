@@ -1,5 +1,8 @@
 package com.personalassistant.ui.shedule;
 
+import java.util.Calendar;
+import java.util.List;
+
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,19 +10,30 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.personalassistant.App;
 import com.personalassistant.R;
 import com.personalassistant.model.AbstractLesson;
-import com.personalassistant.model.LessonType;
+import com.personalassistant.services.LoadScheduleTask;
 
 public class ScheduleTabContent extends Fragment {
 	private ListView listView = null;
-	// private Calendar day = null;
+	private Calendar calendar = null;
 	
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View inflate = inflater.inflate(R.layout.schedule_tab_content, container, false);
     	
-		// day = Calendar.getInstance().
+		Bundle arguments = getArguments();
+		
+		int year = arguments.getInt(ScheduleDayItem.YEAR);
+		int month = arguments.getInt(ScheduleDayItem.MONTH);
+		int day = arguments.getInt(ScheduleDayItem.DAY);
+		
+		calendar = Calendar.getInstance();
+		calendar.set(Calendar.YEAR, year);
+		calendar.set(Calendar.MONTH, month);
+		calendar.set(Calendar.DAY_OF_MONTH, day);
+		
 		listView = (ListView)inflate.findViewById(R.id.schedule_layout);
 		load();
         
@@ -27,25 +41,24 @@ public class ScheduleTabContent extends Fragment {
     }
 
 	private void load() {
-		ScheduleListItemAdapter scheduleListItemAdapter = new ScheduleListItemAdapter(getActivity(), R.layout.schedule_list_view_row, loadListItems());
-		listView.setAdapter(scheduleListItemAdapter);
-		
-	}
-	
-	private ScheduleListItem[] loadListItems() {
-		ScheduleListItem[] items = new ScheduleListItem[] {
-				new ScheduleListItem(new AbstractLesson("Основи програмування", LessonType.LAB, 4, 125)),
-				new ScheduleListItem(new AbstractLesson("Геометричне моделювання", LessonType.LAB, 4, 322)),
-				new ScheduleListItem(new AbstractLesson("Методи побудови математичної моделі", LessonType.LEC, 4, 501)),
-				new ScheduleListItem(new AbstractLesson("Основи програмування", LessonType.LAB, 4, 125)),
-				new ScheduleListItem(new AbstractLesson("Геометричне моделювання", LessonType.LAB, 4, 322)),
-				new ScheduleListItem(new AbstractLesson("Методи побудови математичної моделі", LessonType.LEC, 4, 501)),	
-				new ScheduleListItem(new AbstractLesson("Методи побудови математичної моделі", LessonType.LEC, 4, 501)),
-				new ScheduleListItem(new AbstractLesson("Основи програмування", LessonType.LAB, 4, 125)),
-				new ScheduleListItem(new AbstractLesson("Геометричне моделювання", LessonType.LAB, 4, 322)),
-				new ScheduleListItem(new AbstractLesson("Методи побудови математичної моделі", LessonType.LEC, 4, 501)),	
+		LoadScheduleTask loadScheduleTask = new LoadScheduleTask(getActivity(), calendar) {
+			@Override
+			protected void onPreExec() throws Exception {
+				
+			}
+			
+			@Override
+			protected void onPostExec() throws Exception {
+				
+			}
+			
+			@Override
+			protected void onDayLoaded(List<AbstractLesson> lessons) {
+				ScheduleListItemAdapter scheduleListItemAdapter = new ScheduleListItemAdapter(getActivity(), R.layout.schedule_list_view_row, lessons.toArray(new ScheduleListItem[0]));
+				listView.setAdapter(scheduleListItemAdapter);
+			}
 		};
 		
-		return items;
+		App.getHandler().post(loadScheduleTask);
 	}
 }

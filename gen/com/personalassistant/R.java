@@ -177,10 +177,11 @@ containing a value of this type.
         public static final int common_signin_btn_light_text_disabled=0x7f040006;
         public static final int common_signin_btn_light_text_focused=0x7f040007;
         public static final int common_signin_btn_light_text_pressed=0x7f040005;
-        public static final int common_signin_btn_text_dark=0x7f040020;
-        public static final int common_signin_btn_text_light=0x7f040021;
+        public static final int common_signin_btn_text_dark=0x7f040021;
+        public static final int common_signin_btn_text_light=0x7f040022;
         public static final int global_menu_row_selected=0x7f04000c;
         public static final int locationrow_text_color=0x7f04001a;
+        public static final int locationrow_text_color_pressed=0x7f04001b;
         public static final int main_list_view_row_text_color=0x7f040018;
         /**  Metro colors 
          */
@@ -198,11 +199,11 @@ containing a value of this type.
         public static final int schedule_list_view_row_text_color=0x7f040019;
         /**  Single Tab 
          */
-        public static final int tab_background_color=0x7f04001b;
-        public static final int tab_bottom_pressed=0x7f04001f;
-        public static final int tab_bottom_selected=0x7f04001e;
-        public static final int tab_text_color=0x7f04001c;
-        public static final int tab_text_color_selected=0x7f04001d;
+        public static final int tab_background_color=0x7f04001c;
+        public static final int tab_bottom_pressed=0x7f040020;
+        public static final int tab_bottom_selected=0x7f04001f;
+        public static final int tab_text_color=0x7f04001d;
+        public static final int tab_text_color_selected=0x7f04001e;
         public static final int time_border_color=0x7f04000a;
     }
     public static final class dimen {
@@ -278,67 +279,74 @@ containing a value of this type.
         public static final int ic_plusone_tall_off_client=0x7f020020;
         public static final int lecturers=0x7f020021;
         public static final int location=0x7f020022;
-        public static final int location_cell_shape=0x7f020023;
-        public static final int main_time_shape=0x7f020024;
-        public static final int search=0x7f020025;
-        public static final int settings=0x7f020026;
-        public static final int single_tab_indicator_background_selector=0x7f020027;
-        public static final int single_tab_indicator_text_selector=0x7f020028;
-        public static final int status=0x7f020029;
+        public static final int location_cell_left_selector=0x7f020023;
+        public static final int location_cell_shape=0x7f020024;
+        public static final int location_cell_text_selector=0x7f020025;
+        public static final int main_time_shape=0x7f020026;
+        public static final int search=0x7f020027;
+        public static final int settings=0x7f020028;
+        public static final int single_tab_indicator_background_selector=0x7f020029;
+        public static final int single_tab_indicator_text_selector=0x7f02002a;
+        public static final int status=0x7f02002b;
     }
     public static final class id {
-        public static final int action_settings=0x7f05001f;
-        public static final int container=0x7f050010;
-        public static final int drawer_layout=0x7f05000f;
-        public static final int globalMenuRow=0x7f050006;
+        public static final int action_settings=0x7f050022;
+        public static final int container=0x7f050011;
+        public static final int drawer_layout=0x7f050010;
+        public static final int globalMenuRow=0x7f050007;
         public static final int hybrid=0x7f050004;
-        public static final int imgGlobalRow=0x7f050007;
-        public static final int location_cell_middle=0x7f05000a;
-        public static final int location_cell_search=0x7f050009;
-        public static final int location_layout=0x7f05000e;
-        public static final int location_row=0x7f05000d;
-        public static final int location_tabs=0x7f05000b;
-        public static final int main_clock=0x7f050014;
-        public static final int main_date=0x7f050015;
-        public static final int main_fragment_list_view=0x7f050016;
-        public static final int main_layout=0x7f050012;
-        public static final int main_list_layout=0x7f050017;
-        public static final int navigation_drawer=0x7f050011;
+        public static final int imgGlobalRow=0x7f050008;
+        public static final int location_cell_middle=0x7f05000b;
+        public static final int location_cell_search=0x7f05000a;
+        public static final int location_layout=0x7f05000f;
+        public static final int location_row=0x7f05000e;
+        public static final int location_tabs=0x7f05000c;
+        public static final int main_clock=0x7f050015;
+        public static final int main_date=0x7f050016;
+        public static final int main_fragment_list_view=0x7f050017;
+        public static final int main_layout=0x7f050013;
+        public static final int main_list_layout=0x7f050018;
+        public static final int navigation_drawer=0x7f050012;
         public static final int none=0x7f050000;
         public static final int normal=0x7f050001;
-        public static final int pager=0x7f05000c;
-        public static final int pager_title_strip=0x7f05001c;
+        public static final int pager=0x7f05000d;
         public static final int satellite=0x7f050002;
-        public static final int schedule_layout=0x7f05001e;
-        public static final int schedule_list_layout=0x7f05001d;
-        public static final int schedule_tabs=0x7f05001b;
+        public static final int schedule_layout=0x7f05001f;
+        public static final int schedule_list=0x7f050021;
+        public static final int schedule_list_layout=0x7f05001e;
+        public static final int schedule_tabs=0x7f05001d;
+        public static final int schedule_tabs_scroll=0x7f05001c;
+        public static final int settings_layout=0x7f050020;
         public static final int terrain=0x7f050003;
-        public static final int time_layout=0x7f050013;
-        public static final int txtBottom=0x7f05001a;
-        public static final int txtGlobalHeader=0x7f050005;
-        public static final int txtGlobalRow=0x7f050008;
-        public static final int txtMiddle=0x7f050019;
-        public static final int txtTop=0x7f050018;
+        public static final int textView1=0x7f050005;
+        public static final int time_layout=0x7f050014;
+        public static final int txtBottom=0x7f05001b;
+        public static final int txtGlobalHeader=0x7f050006;
+        public static final int txtGlobalRow=0x7f050009;
+        public static final int txtMiddle=0x7f05001a;
+        public static final int txtTop=0x7f050019;
     }
     public static final class integer {
         public static final int google_play_services_version=0x7f070000;
     }
     public static final class layout {
-        public static final int fragment_navigation_drawer=0x7f030000;
-        public static final int global_navigation_header=0x7f030001;
-        public static final int global_navigation_row=0x7f030002;
-        public static final int location_cell=0x7f030003;
-        public static final int location_cell_search=0x7f030004;
-        public static final int location_fragment=0x7f030005;
-        public static final int location_row=0x7f030006;
-        public static final int location_tab_content=0x7f030007;
-        public static final int main=0x7f030008;
-        public static final int main_fragment=0x7f030009;
-        public static final int main_list_view_row=0x7f03000a;
-        public static final int schedule_fragment=0x7f03000b;
-        public static final int schedule_list_view_row=0x7f03000c;
-        public static final int schedule_tab_content=0x7f03000d;
-        public static final int single_tab_indicator=0x7f03000e;
+        public static final int activity_start=0x7f030000;
+        public static final int fragment_navigation_drawer=0x7f030001;
+        public static final int global_navigation_header=0x7f030002;
+        public static final int global_navigation_row=0x7f030003;
+        public static final int location_cell=0x7f030004;
+        public static final int location_cell_search=0x7f030005;
+        public static final int location_fragment=0x7f030006;
+        public static final int location_row=0x7f030007;
+        public static final int location_tab_content=0x7f030008;
+        public static final int main=0x7f030009;
+        public static final int main_fragment=0x7f03000a;
+        public static final int main_list_view_row=0x7f03000b;
+        public static final int schedule_fragment=0x7f03000c;
+        public static final int schedule_list_view_row=0x7f03000d;
+        public static final int schedule_tab_content=0x7f03000e;
+        public static final int settings_fragment=0x7f03000f;
+        public static final int single_tab_indicator=0x7f030010;
     }
     public static final class menu {
         public static final int location=0x7f0a0000;
@@ -485,6 +493,7 @@ containing a value of this type.
         public static final int sun=0x7f060029;
         public static final int thu=0x7f06002d;
         public static final int title_activity_location=0x7f06003d;
+        public static final int title_activity_start=0x7f060044;
         public static final int title_section1=0x7f06003e;
         public static final int title_section2=0x7f06003f;
         public static final int title_section3=0x7f060040;

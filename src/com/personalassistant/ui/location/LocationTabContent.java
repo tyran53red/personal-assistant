@@ -7,6 +7,7 @@ import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -16,6 +17,7 @@ import com.personalassistant.model.Auditory;
 
 public class LocationTabContent extends Fragment {
 	private TableLayout layout = null;
+	private LocationCell currentCell = null;
 	
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -56,22 +58,35 @@ public class LocationTabContent extends Fragment {
 
 			TableLayout.LayoutParams tableRowParams = new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.WRAP_CONTENT);
 			tableRowParams.setMargins(0, 0, 0, getResources().getDimensionPixelOffset(R.dimen.location_tab_content_space));
-
 			row.setLayoutParams(tableRowParams);
 			
 			layout.addView(row);
 			
-			LocationCell locationCell1 = new LocationCell(auditories.get(i), layoutInflater);
+			LocationCell locationCell1 = createCell(auditories.get(i), layoutInflater);
 			row.addView(locationCell1.getCellView());
-
 			
 			if (auditories.size() > i + 1) {
-				LocationCell locationCell2 = new LocationCell(auditories.get(i + 1), layoutInflater);
+				LocationCell locationCell2 = createCell(auditories.get(i + 1), layoutInflater);
 				row.addView(locationCell2.getCellView());
-			} else {
-				LocationCellSearch cellSearch = new LocationCellSearch(layoutInflater);
-				row.addView(cellSearch.getSearchCellView());
 			}
 		}
+	}
+	
+	private LocationCell createCell(final Auditory auditory, LayoutInflater layoutInflater) {
+		final LocationCell cell = new LocationCell(auditory, layoutInflater);
+		
+		cell.getCellView().setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if (currentCell != null) {
+					currentCell.getCellView().setSelected(false);
+				}
+				
+				cell.getCellView().setSelected(true);
+				currentCell = cell;
+			}
+		});
+		
+		return cell;
 	}
 }

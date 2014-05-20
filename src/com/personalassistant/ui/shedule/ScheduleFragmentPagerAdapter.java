@@ -13,12 +13,10 @@ public class ScheduleFragmentPagerAdapter extends FragmentPagerAdapter {
 	
 	public ScheduleFragmentPagerAdapter(FragmentManager fm) {
 		super(fm);
-		
-		items.add(new ScheduleDayItem(Calendar.getInstance()));
-		items.add(new ScheduleDayItem(Calendar.getInstance()));
-		items.add(new ScheduleDayItem(Calendar.getInstance()));
-		items.add(new ScheduleDayItem(Calendar.getInstance()));
-		items.add(new ScheduleDayItem(Calendar.getInstance()));
+	}
+	
+	public void setItems(List<ScheduleDayItem> items) {
+		this.items.addAll(items);
 	}
 
 	@Override
@@ -33,5 +31,13 @@ public class ScheduleFragmentPagerAdapter extends FragmentPagerAdapter {
 
 	public ScheduleDayItem getTabItem(int i) {
 		return items.get(i);
+	}
+
+	public ScheduleDayItem addDay(Calendar calendar) {
+		ScheduleDayItem object = new ScheduleDayItem(calendar);
+		items.add(object);
+		notifyDataSetChanged();
+		
+		return object;
 	}
 }
