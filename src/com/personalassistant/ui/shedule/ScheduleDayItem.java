@@ -13,7 +13,6 @@ public class ScheduleDayItem {
 	public static String MONTH = "month";
 	public static String DAY = "day";
 	
-	
 	private Calendar day = null;
 	
 	public ScheduleDayItem(Calendar day) {
@@ -34,5 +33,9 @@ public class ScheduleDayItem {
 
 	public String getTitle(Resources resources) {
 		return UIToolkit.formatDate(day, resources);
+	}
+	
+	public Calendar getCalendar() {
+		return day;
 	}
 }

@@ -50,5 +50,6 @@
     <string name="action_settings">Settings</string>
     <string name="location_tab_1">КАФЕДРА</string>
     <string name="location_tab_2">ІНШІ</string>
-    <string name="title_activity_start">Завантаження даних...</string>
+
+    <string name="title_loading_text">Завантаження даних...</string>
 </resources>

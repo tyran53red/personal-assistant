@@ -31,7 +31,8 @@
         </activity>
         <activity
             android:name="com.personalassistant.ui.Start"
-            android:label="@string/title_activity_start" >
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" >
             
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -37,7 +37,7 @@ public class LocationFragment extends Fragment implements SingleTabWidget.OnTabC
 		
 		for (int i = 0; i < locationFragmentPagerAdapter.getCount(); i++) {
 			LocationTabItem item = locationFragmentPagerAdapter.getTabItem(i);
-			tabWidget.addTab(item.getTitle());
+			tabWidget.addTab(item.getTitle(), i);
 		}
 		
 		tabWidget.setCurrentTab(0);

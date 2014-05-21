@@ -4,7 +4,7 @@ public class User {
 	private static User user = null;
 	
 	private UserRole role = UserRole.LECTURER;
-	private String name = "Андрій Гурський";
+	private String name = new String();
 	
 	public User() {
 		

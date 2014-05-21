@@ -32,10 +32,14 @@ public class ScheduleFragmentPagerAdapter extends FragmentPagerAdapter {
 	public ScheduleDayItem getTabItem(int i) {
 		return items.get(i);
 	}
+	
+	public Calendar getDay(int index) {
+		return items.get(index).getCalendar();
+	}
 
-	public ScheduleDayItem addDay(Calendar calendar) {
+	public ScheduleDayItem addDay(Calendar calendar, int index) {
 		ScheduleDayItem object = new ScheduleDayItem(calendar);
-		items.add(object);
+		items.add(index, object);
 		notifyDataSetChanged();
 		
 		return object;

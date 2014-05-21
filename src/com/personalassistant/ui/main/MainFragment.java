@@ -1,6 +1,7 @@
 package com.personalassistant.ui.main;
 
 import java.util.Calendar;
+import java.util.List;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -10,9 +11,10 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.personalassistant.App;
 import com.personalassistant.R;
 import com.personalassistant.model.AbstractLesson;
-import com.personalassistant.model.LessonType;
+import com.personalassistant.services.LoadScheduleTask;
 import com.personalassistant.ui.util.UIToolkit;
 
 public class MainFragment extends Fragment {
@@ -29,10 +31,23 @@ public class MainFragment extends Fragment {
 		
 		setClockTime(Calendar.getInstance());
 		
+		/*App.getHandler().post(new Runnable() {
+			@Override
+			public void run() {
+				while (true) {
+					try {
+						setClockTime(Calendar.getInstance());
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		});*/
+		
 		sheduleListView = (ListView)inflate.findViewById(R.id.main_fragment_list_view);
 		
-		MainListItemAdapter adapter = new MainListItemAdapter(getActivity(), R.layout.main_list_view_row, loadListItem());
-		sheduleListView.setAdapter(adapter);
+		load();
 		
 		return inflate;
 	}
@@ -42,16 +57,32 @@ public class MainFragment extends Fragment {
 		twDate.setText(UIToolkit.formatDate(calendar, getResources()));
 	}
 	
-	private MainListItem[] loadListItem() {
-		MainListItem[] result = new MainListItem[] {
-			new MainListItem(new AbstractLesson("Основи програмування", LessonType.LAB, 4, 125)),
-			new MainListItem(new AbstractLesson("Геометричне моделювання", LessonType.LAB, 4, 322)),
-			new MainListItem(new AbstractLesson("Методи побудови математичної моделі", LessonType.LEC, 4, 501)),
-			new MainListItem(new AbstractLesson("Основи програмування", LessonType.LAB, 4, 125)),
-			new MainListItem(new AbstractLesson("Геометричне моделювання", LessonType.LAB, 4, 322)),
-			new MainListItem(new AbstractLesson("Методи побудови математичної моделі", LessonType.LEC, 4, 501)),
+	private void load() {
+		LoadScheduleTask loadScheduleTask = new LoadScheduleTask(getActivity(), Calendar.getInstance()) {
+			@Override
+			protected void onPreExec() throws Exception {
+				
+			}
+			
+			@Override
+			protected void onPostExec() throws Exception {
+				
+			}
+			
+			@Override
+			protected void onDayLoaded(List<AbstractLesson> lessons) {
+				MainListItem mainListItem[] = new MainListItem[lessons.size()];
+				
+				int counter = 0;
+				for (AbstractLesson lesson : lessons) {
+					mainListItem[counter++] = new MainListItem(lesson);
+				}
+				
+				MainListItemAdapter adapter = new MainListItemAdapter(getActivity(), R.layout.main_list_view_row, mainListItem);
+				sheduleListView.setAdapter(adapter);
+			}
 		};
 		
-		return result;
+		App.getHandler().post(loadScheduleTask);
 	}
 }

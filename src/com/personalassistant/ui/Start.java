@@ -14,6 +14,7 @@ import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccoun
 import com.google.api.services.calendar.CalendarScopes;
 import com.personalassistant.App;
 import com.personalassistant.R;
+import com.personalassistant.model.User;
 
 public class Start extends Activity {
 	private static final String PREF_ACCOUNT_NAME = "accountName";
@@ -46,6 +47,7 @@ public class Start extends Activity {
 		
 		if (accountName != null) {
 			credential.setSelectedAccountName(accountName);
+			User.getUser().setName(accountName);
 			startAppContent();
 		} else if (checkGooglePlayServicesAvailable()) {
 			haveGooglePlayServices();
@@ -87,6 +89,7 @@ public class Start extends Activity {
 					
 					if (accountName != null) {
 						credential.setSelectedAccountName(accountName);
+						User.getUser().setName(accountName);
 						SharedPreferences settings = getPreferences(Context.MODE_PRIVATE);
 						SharedPreferences.Editor editor = settings.edit();
 						editor.putString(PREF_ACCOUNT_NAME, accountName);

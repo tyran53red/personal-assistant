@@ -32,15 +32,11 @@ public class SingleTabWidget extends TabWidget {
 		mLayoutId = layoutResId;
 	}
 
-	public void addTab(int imageResId) {
-		addTab(imageResId, null);
+	public void addTab(String title, int index) {
+		addTab(0, title, index);
 	}
 
-	public void addTab(String title) {
-		addTab(0, title);
-	}
-
-	public void addTab(int imageResId, String title) {
+	public void addTab(int imageResId, String title, int index) {
 		View view = LayoutInflater.from(getContext()).inflate(mLayoutId, this, false);
 		if (view == null) {
 			throw new RuntimeException("You must call 'setLayout(int layoutResId)' to initialize the tab.");
@@ -78,8 +74,8 @@ public class SingleTabWidget extends TabWidget {
 			}
 		}
 
-		addView(view);
-		view.setOnClickListener(new TabClickListener(getTabCount() - 1));
+		addView(view, index);
+		view.setOnClickListener(new TabClickListener());
 		view.setOnFocusChangeListener(this);
 	}
 
@@ -99,18 +95,21 @@ public class SingleTabWidget extends TabWidget {
 	}
 
 	private class TabClickListener implements OnClickListener {
-		private final int mIndex;
-
-		public TabClickListener(int index) {
-			mIndex = index;
+		public TabClickListener() {
 		}
 
 		@Override
 		public void onClick(View view) {
-			if (mOnTabChangedListener != null && mIndex != mSelectedTab) {
-				mSelectedTab = mIndex;
-				setCurrentTab(mIndex);
-				mOnTabChangedListener.onTabChanged(mIndex);
+			for (int i = 0; i < getTabCount(); i++) {
+				if (getChildAt(i).equals(view)) {
+					if (mOnTabChangedListener != null && i != mSelectedTab) {
+						mSelectedTab = i;
+						setCurrentTab(i);
+						mOnTabChangedListener.onTabChanged(i);
+					}
+					
+					break;
+				}
 			}
 		}
 	}

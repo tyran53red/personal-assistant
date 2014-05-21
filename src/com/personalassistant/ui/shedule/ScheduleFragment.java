@@ -14,6 +14,8 @@ import com.personalassistant.R;
 import com.personalassistant.ui.widget.SingleTabWidget;
 
 public class ScheduleFragment extends Fragment implements SingleTabWidget.OnTabChangedListener {
+	private static long DAY = 86400000;
+	
 	private ViewPager pager = null;
 	private SingleTabWidget tabWidget = null;
 	private HorizontalScrollView tabsScroll = null;
@@ -42,19 +44,48 @@ public class ScheduleFragment extends Fragment implements SingleTabWidget.OnTabC
             }
         });
 		
-		addDay(Calendar.getInstance());
-		tabWidget.setCurrentTab(0);
+		Calendar prevDay = Calendar.getInstance();
+		Calendar currentDay = Calendar.getInstance();
+		Calendar nextDay = Calendar.getInstance();
+		
+		prevDay.setTimeInMillis(currentDay.getTimeInMillis() -  DAY);
+		nextDay.setTimeInMillis(currentDay.getTimeInMillis() +  DAY);
+
+		addDay(prevDay, 0);
+		addDay(currentDay, 1);
+		addDay(nextDay, 2);
+		
+		tabWidget.setCurrentTab(1);
 		
 		return inflate;
 	}
 	
-	private void addDay(Calendar calendar) {
-		ScheduleDayItem addedDay = adapter.addDay(calendar);
-		tabWidget.addTab(addedDay.getTitle(getResources()));
+	private void addDay(Calendar calendar, int index) {
+		ScheduleDayItem addedDay = adapter.addDay(calendar, index);
+		tabWidget.addTab(addedDay.getTitle(getResources()), index);
+		tabWidget.refreshDrawableState();
 	}
 
 	@Override
 	public void onTabChanged(int tabIndex) {
-		pager.setCurrentItem(tabIndex);
+		int select = tabIndex;
+		Calendar selectedDay = adapter.getDay(tabIndex);
+		
+		if (tabIndex == 0) {
+			Calendar prevDay = Calendar.getInstance();
+			prevDay.setTimeInMillis(selectedDay.getTimeInMillis() - DAY);
+			addDay(prevDay, 0);
+			
+			select++;
+		}
+		
+		if (tabIndex == adapter.getCount() - 1) {
+			Calendar nextDay = Calendar.getInstance();
+			nextDay.setTimeInMillis(selectedDay.getTimeInMillis() + DAY);
+			addDay(nextDay, adapter.getCount());
+		}
+		
+		pager.setCurrentItem(select);
+		tabWidget.setCurrentTab(select);
 	}
 }

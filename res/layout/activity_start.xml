@@ -1,13 +1,20 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_load"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#fff"
+    android:gravity="center_vertical|center_horizontal"
+    android:orientation="vertical"
     tools:context="${packageName}.${activityClass}" >
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/textViewLoading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/title_activity_start" />
+        android:text="@string/title_loading_text"
+        android:textColor="@android:color/holo_blue_light"
+        android:textSize="24sp"
+        android:typeface="@android:color/holo_blue_light" />
 
-</RelativeLayout>
+</LinearLayout>
