@@ -32,4 +32,7 @@
     <color name="tab_text_color_selected">#FFFFFF</color>
     <color name="tab_bottom_selected">#FFFFFF</color>
     <color name="tab_bottom_pressed">#6C7BA1</color>
+    
+    <!-- Loading activity -->
+    <color name="activity_background">#E8E8E8</color>
 </resources>

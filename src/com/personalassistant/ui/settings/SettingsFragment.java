@@ -18,24 +18,66 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import com.personalassistant.App;
 import com.personalassistant.R;
 import com.personalassistant.model.Settings;
-import com.personalassistant.model.SettingsScheduleItem;
+import com.personalassistant.model.SettingsCalendarItem;
 import com.personalassistant.services.LoadSettingsTask;
 
-public class SettingsFragment extends Fragment implements OnItemSelectedListener {
-	private Spinner spinner = null;
-	private ArrayAdapter<SettingsScheduleItem> arrayAdapter = null;
+public class SettingsFragment extends Fragment {
+	private Spinner spnSchedule = null;
+	private Spinner spnLocation = null;
+	
+	private ArrayAdapter<SettingsCalendarItem> scheduleAdapter = null;
+	private ArrayAdapter<SettingsCalendarItem> locationAdapter = null;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 		View inflate = inflater.inflate(R.layout.settings_fragment, container, false);
 		
-		spinner = (Spinner)inflate.findViewById(R.id.schedule_list);
+		spnSchedule = (Spinner)inflate.findViewById(R.id.schedule_list);
+		spnLocation = (Spinner)inflate.findViewById(R.id.location_list);
 		
-		arrayAdapter = new ArrayAdapter<SettingsScheduleItem>(getActivity(), android.R.layout.simple_spinner_item);
-		arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		spinner.setAdapter(arrayAdapter);
+		scheduleAdapter = new ArrayAdapter<SettingsCalendarItem>(getActivity(), android.R.layout.simple_spinner_item);
+		scheduleAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		locationAdapter = new ArrayAdapter<SettingsCalendarItem>(getActivity(), android.R.layout.simple_spinner_item);
+		locationAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		
-		spinner.setOnItemSelectedListener(this);
+		spnSchedule.setAdapter(scheduleAdapter);
+		spnLocation.setAdapter(locationAdapter);
+		
+		spnSchedule.setOnItemSelectedListener(new OnItemSelectedListener() {
+			@Override
+			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+				SharedPreferences preferences = getActivity().getSharedPreferences(App.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
+				SharedPreferences.Editor editor = preferences.edit();
+				
+				long value = scheduleAdapter.getItem(position).getId();
+				
+				editor.putLong(App.SELECTED_SCHEDULE, value);
+				editor.commit();
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> parent) {
+				
+			}
+		});
+		
+		spnLocation.setOnItemSelectedListener(new OnItemSelectedListener() {
+			@Override
+			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+				SharedPreferences preferences = getActivity().getSharedPreferences(App.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
+				SharedPreferences.Editor editor = preferences.edit();
+				
+				long value = locationAdapter.getItem(position).getId();
+				
+				editor.putLong(App.SELECTED_LOCATION, value);
+				editor.commit();
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> parent) {
+				
+			}
+		});
 		
 		load();
 		
@@ -52,23 +94,40 @@ public class SettingsFragment extends Fragment implements OnItemSelectedListener
 			
 			@Override
 			protected void onDataReady(Settings settings) throws Exception {
-				List<SettingsScheduleItem> scheduleItems = settings.getScheduleItems();
-				arrayAdapter.addAll(scheduleItems);
+				List<SettingsCalendarItem> scheduleItems = settings.getScheduleItems();
+				List<SettingsCalendarItem> locationItems = settings.getLocationItems();
+
+				scheduleAdapter.addAll(scheduleItems);
+				locationAdapter.addAll(locationItems);
 				
 				SharedPreferences preferences = getActivity().getSharedPreferences(App.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
+				
 				if (preferences.contains(App.SELECTED_SCHEDULE)) {
 					long value = preferences.getLong(App.SELECTED_SCHEDULE, 0);
 					
 					int counter = 0;
-					for (SettingsScheduleItem item : scheduleItems) {
+					for (SettingsCalendarItem item : scheduleItems) {
 						if (item.getId() == value) {
-							spinner.setSelection(counter);
+							spnLocation.setSelection(counter);
 							break;
 						}
 						
 						counter++;
 					}
+				}
+				
+				if (preferences.contains(App.SELECTED_LOCATION)) {
+					long value = preferences.getLong(App.SELECTED_LOCATION, 0);
 					
+					int counter = 0;
+					for (SettingsCalendarItem item : locationItems) {
+						if (item.getId() == value) {
+							spnLocation.setSelection(counter);
+							break;
+						}
+						
+						counter++;
+					}
 				}
 			}
 
@@ -77,21 +136,5 @@ public class SettingsFragment extends Fragment implements OnItemSelectedListener
 				
 			}
 		});
-	}
-
-	@Override
-	public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-		SharedPreferences preferences = getActivity().getSharedPreferences(App.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
-		SharedPreferences.Editor editor = preferences.edit();
-		
-		long value = arrayAdapter.getItem(position).getId();
-		
-		editor.putLong(App.SELECTED_SCHEDULE, value);
-		editor.commit();
-	}
-
-	@Override
-	public void onNothingSelected(AdapterView<?> parent) {
-		
 	}
 }

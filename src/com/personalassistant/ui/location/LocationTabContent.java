@@ -12,8 +12,10 @@ import android.view.ViewGroup;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 
+import com.personalassistant.App;
 import com.personalassistant.R;
 import com.personalassistant.model.Auditory;
+import com.personalassistant.services.CreateLocationEvent;
 
 public class LocationTabContent extends Fragment {
 	private TableLayout layout = null;
@@ -78,12 +80,20 @@ public class LocationTabContent extends Fragment {
 		cell.getCellView().setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				if (currentCell != null) {
-					currentCell.getCellView().setSelected(false);
-				}
-				
-				cell.getCellView().setSelected(true);
-				currentCell = cell;
+				App.getHandler().post(new CreateLocationEvent(getActivity(), auditory) {
+					@Override
+					protected void onPreExec() throws Exception {
+						if (currentCell != null) {
+							currentCell.getCellView().setSelected(false);
+						}
+					}
+					
+					@Override
+					protected void onPostExec() throws Exception {
+						cell.getCellView().setSelected(true);
+						currentCell = cell;
+					}
+				});
 			}
 		});
 		

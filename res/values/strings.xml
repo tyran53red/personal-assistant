@@ -51,5 +51,8 @@
     <string name="location_tab_1">КАФЕДРА</string>
     <string name="location_tab_2">ІНШІ</string>
 
-    <string name="title_loading_text">Завантаження даних...</string>
+    <string name="empty"></string>
+    
+    <string name="settings_schedule_text">Розклад:</string>
+    <string name="settings_location_text">Місцезнаходження:</string>
 </resources>

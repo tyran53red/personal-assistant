@@ -31,4 +31,6 @@
     <dimen name="schedule_list_view_row_top_text_size">18sp</dimen>
     <dimen name="schedule_list_view_row_top_text_middle">18sp</dimen>
     <dimen name="schedule_list_view_row_top_text_bottom">18sp</dimen>
+    
+    <dimen name="settings_text_size">18sp</dimen>
 </resources>

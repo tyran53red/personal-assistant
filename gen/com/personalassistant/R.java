@@ -164,6 +164,9 @@ containing a value of this type.
         public static final int zOrderOnTop=0x7f010010;
     }
     public static final class color {
+        /**  Loading activity 
+         */
+        public static final int activity_background=0x7f040021;
         public static final int app_background=0x7f04000b;
         public static final int common_action_bar_splitter=0x7f040009;
         /**  Sign-in Button Colors 
@@ -177,8 +180,8 @@ containing a value of this type.
         public static final int common_signin_btn_light_text_disabled=0x7f040006;
         public static final int common_signin_btn_light_text_focused=0x7f040007;
         public static final int common_signin_btn_light_text_pressed=0x7f040005;
-        public static final int common_signin_btn_text_dark=0x7f040021;
-        public static final int common_signin_btn_text_light=0x7f040022;
+        public static final int common_signin_btn_text_dark=0x7f040022;
+        public static final int common_signin_btn_text_light=0x7f040023;
         public static final int global_menu_row_selected=0x7f04000c;
         public static final int locationrow_text_color=0x7f04001a;
         public static final int locationrow_text_color_pressed=0x7f04001b;
@@ -241,6 +244,7 @@ containing a value of this type.
         public static final int schedule_list_view_row_top_text_bottom=0x7f08001c;
         public static final int schedule_list_view_row_top_text_middle=0x7f08001b;
         public static final int schedule_list_view_row_top_text_size=0x7f08001a;
+        public static final int settings_text_size=0x7f08001d;
         public static final int tab_padding=0x7f080019;
     }
     public static final class drawable {
@@ -278,28 +282,32 @@ containing a value of this type.
         public static final int ic_plusone_standard_off_client=0x7f02001f;
         public static final int ic_plusone_tall_off_client=0x7f020020;
         public static final int lecturers=0x7f020021;
-        public static final int location=0x7f020022;
-        public static final int location_cell_left_selector=0x7f020023;
-        public static final int location_cell_shape=0x7f020024;
-        public static final int location_cell_text_selector=0x7f020025;
-        public static final int main_time_shape=0x7f020026;
-        public static final int search=0x7f020027;
-        public static final int settings=0x7f020028;
-        public static final int single_tab_indicator_background_selector=0x7f020029;
-        public static final int single_tab_indicator_text_selector=0x7f02002a;
-        public static final int status=0x7f02002b;
+        public static final int loading_background=0x7f020022;
+        public static final int location=0x7f020023;
+        public static final int location_cell_left_selector=0x7f020024;
+        public static final int location_cell_shape=0x7f020025;
+        public static final int location_cell_text_selector=0x7f020026;
+        public static final int main_time_shape=0x7f020027;
+        public static final int search=0x7f020028;
+        public static final int settings=0x7f020029;
+        public static final int single_tab_indicator_background_selector=0x7f02002a;
+        public static final int single_tab_indicator_text_selector=0x7f02002b;
+        public static final int status=0x7f02002c;
     }
     public static final class id {
-        public static final int action_settings=0x7f050023;
+        public static final int action_settings=0x7f050026;
         public static final int container=0x7f050012;
         public static final int drawer_layout=0x7f050011;
         public static final int globalMenuRow=0x7f050008;
         public static final int hybrid=0x7f050004;
         public static final int imgGlobalRow=0x7f050009;
         public static final int layout_load=0x7f050005;
+        public static final int loadingLogo=0x7f050006;
+        public static final int location=0x7f050024;
         public static final int location_cell_middle=0x7f05000c;
         public static final int location_cell_search=0x7f05000b;
         public static final int location_layout=0x7f050010;
+        public static final int location_list=0x7f050025;
         public static final int location_row=0x7f05000f;
         public static final int location_tabs=0x7f05000d;
         public static final int main_clock=0x7f050016;
@@ -312,14 +320,14 @@ containing a value of this type.
         public static final int normal=0x7f050001;
         public static final int pager=0x7f05000e;
         public static final int satellite=0x7f050002;
+        public static final int schedule=0x7f050022;
         public static final int schedule_layout=0x7f050020;
-        public static final int schedule_list=0x7f050022;
+        public static final int schedule_list=0x7f050023;
         public static final int schedule_list_layout=0x7f05001f;
         public static final int schedule_tabs=0x7f05001e;
         public static final int schedule_tabs_scroll=0x7f05001d;
         public static final int settings_layout=0x7f050021;
         public static final int terrain=0x7f050003;
-        public static final int textViewLoading=0x7f050006;
         public static final int time_layout=0x7f050015;
         public static final int txtBottom=0x7f05001c;
         public static final int txtGlobalHeader=0x7f050007;
@@ -456,6 +464,7 @@ containing a value of this type.
         /**  Main Fragment 
          */
         public static final int default_time=0x7f060027;
+        public static final int empty=0x7f060044;
         public static final int february_r=0x7f060031;
         public static final int fri=0x7f06002e;
         /**  Months R 
@@ -488,13 +497,14 @@ containing a value of this type.
         public static final int search_item=0x7f060022;
         public static final int september_r=0x7f060038;
         public static final int settings_item=0x7f060023;
+        public static final int settings_location_text=0x7f060046;
+        public static final int settings_schedule_text=0x7f060045;
         public static final int status_item=0x7f06001f;
         /**  Days shortcut 
          */
         public static final int sun=0x7f060029;
         public static final int thu=0x7f06002d;
         public static final int title_activity_location=0x7f06003d;
-        public static final int title_loading_text=0x7f060044;
         public static final int title_section1=0x7f06003e;
         public static final int title_section2=0x7f06003f;
         public static final int title_section3=0x7f060040;

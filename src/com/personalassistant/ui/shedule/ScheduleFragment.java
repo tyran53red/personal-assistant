@@ -55,9 +55,14 @@ public class ScheduleFragment extends Fragment implements SingleTabWidget.OnTabC
 		addDay(currentDay, 1);
 		addDay(nextDay, 2);
 		
-		tabWidget.setCurrentTab(1);
+		select(1);
 		
 		return inflate;
+	}
+	
+	private void select(int position) {
+		tabWidget.setCurrentTab(position);
+		pager.setCurrentItem(position);
 	}
 	
 	private void addDay(Calendar calendar, int index) {
@@ -85,7 +90,6 @@ public class ScheduleFragment extends Fragment implements SingleTabWidget.OnTabC
 			addDay(nextDay, adapter.getCount());
 		}
 		
-		pager.setCurrentItem(select);
-		tabWidget.setCurrentTab(select);
+		select(select);
 	}
 }

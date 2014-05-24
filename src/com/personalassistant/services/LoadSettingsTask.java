@@ -12,7 +12,7 @@ import android.provider.CalendarContract.Calendars;
 import com.personalassistant.App;
 import com.personalassistant.App.CalendarType;
 import com.personalassistant.model.Settings;
-import com.personalassistant.model.SettingsScheduleItem;
+import com.personalassistant.model.SettingsCalendarItem;
 
 public abstract class LoadSettingsTask extends CalendarAsyncTask {
 	public static final String[] EVENT_PROJECTION = new String[] {
@@ -39,7 +39,8 @@ public abstract class LoadSettingsTask extends CalendarAsyncTask {
 		String[] selectionArgs = new String[] { App.getCredential().getSelectedAccountName(), "com.google", }; 
 		Cursor cur = contentResolver.query(uri, EVENT_PROJECTION, selection, selectionArgs, null);
 		
-		List<SettingsScheduleItem> scheduleItems = new ArrayList<SettingsScheduleItem>();
+		List<SettingsCalendarItem> scheduleItems = new ArrayList<SettingsCalendarItem>();
+		List<SettingsCalendarItem> locationItems = new ArrayList<SettingsCalendarItem>();
 		
 		while (cur.moveToNext()) {
 		    long calID = -1;
@@ -48,14 +49,21 @@ public abstract class LoadSettingsTask extends CalendarAsyncTask {
 		    calID = cur.getLong(PROJECTION_ID_INDEX);
 		    displayName = cur.getString(PROJECTION_DISPLAY_NAME_INDEX);
 		    
-		    if (calID != -1 && displayName != null &&
-		    	App.CalendarType.checkCalendarType(displayName) == CalendarType.SCHEDULE) {
-		    	scheduleItems.add(new SettingsScheduleItem(displayName, calID));
+		    if (calID != -1 && displayName != null) {
+		    	CalendarType calendarType = App.CalendarType.checkCalendarType(displayName);
+		    	
+				if (calendarType == CalendarType.SCHEDULE) {
+		    		scheduleItems.add(new SettingsCalendarItem(displayName, calID));
+		    	} else if (calendarType == CalendarType.LOCATION) {
+		    		locationItems.add(new SettingsCalendarItem(displayName, calID));
+		    	}
+		    	
 		    }
 		}
 		
 		Settings settings = new Settings();
 		settings.setScheduleItems(scheduleItems);
+		settings.setLocationItems(locationItems);
 		
 		onDataReady(settings);
 	}

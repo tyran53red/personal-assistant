@@ -8,11 +8,13 @@ import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccoun
 
 public class App {
 	public enum CalendarType {
-		SCHEDULE;
+		SCHEDULE, LOCATION;
 		
 		public static CalendarType checkCalendarType(String name) {
 			if (name.startsWith("schedule")) {
 				return SCHEDULE;
+			} else if (name.startsWith("location")) {
+				return LOCATION;
 			}
 			
 			return null;
@@ -21,6 +23,7 @@ public class App {
 	
 	public static String SHARED_PREFERENCES_NAME = "PASPF";
 	public static String SELECTED_SCHEDULE = "selected-schedule";
+	public static String SELECTED_LOCATION = "selected-location";
 	
 	private static GoogleAccountCredential credential = null;
 	private static Map<CalendarType, Integer> calendars = null;

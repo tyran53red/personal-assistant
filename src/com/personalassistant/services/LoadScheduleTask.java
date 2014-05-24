@@ -73,6 +73,13 @@ public abstract class LoadScheduleTask extends CalendarAsyncTask {
 			while(cursor.moveToNext()) {
 				AbstractLesson lesson = new AbstractLesson();
 				lesson.setName(cursor.getString(4));
+			/*	
+				Calendar calendar = Calendar.getInstance();
+				calendar.setTimeInMillis(cursor.getLong(1));
+
+				String date = "" + calendarStart.get(Calendar.DAY_OF_MONTH) + "-" + calendarStart.get(Calendar.MONTH) + "-" + calendarStart.get(Calendar.YEAR) + "";
+				String date2 = "" + calendar.get(Calendar.DAY_OF_MONTH) + "-" + calendar.get(Calendar.MONTH) + "-" + calendar.get(Calendar.YEAR) + "";
+				*/
 				lesson.setLessonType(LessonType.LAB);
 				
 				lessons.add(lesson);

@@ -1,6 +1,8 @@
 package com.personalassistant.ui;
 
+import java.io.IOException;
 import java.util.Collections;
+import java.util.List;
 
 import android.accounts.AccountManager;
 import android.app.Activity;
@@ -14,7 +16,10 @@ import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccoun
 import com.google.api.services.calendar.CalendarScopes;
 import com.personalassistant.App;
 import com.personalassistant.R;
+import com.personalassistant.model.Settings;
+import com.personalassistant.model.SettingsCalendarItem;
 import com.personalassistant.model.User;
+import com.personalassistant.services.LoadSettingsTask;
 
 public class Start extends Activity {
 	private static final String PREF_ACCOUNT_NAME = "accountName";
@@ -30,11 +35,45 @@ public class Start extends Activity {
 		setupSettings();
 	}
 	
+	private void load() {
+		App.getHandler().post(new LoadSettingsTask(this) {
+			@Override
+			protected void onPreExec() throws IOException {
+				
+			}
+			
+			@Override
+			protected void onDataReady(Settings settings) throws Exception {
+				List<SettingsCalendarItem> scheduleItems = settings.getScheduleItems();
+				List<SettingsCalendarItem> locationItems = settings.getLocationItems();
+				
+				SharedPreferences preferences = getSharedPreferences(App.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
+				SharedPreferences.Editor editor = preferences.edit();
+				
+				if (!preferences.contains(App.SELECTED_SCHEDULE) && scheduleItems.size() > 0) {
+					editor.putLong(App.SELECTED_LOCATION, scheduleItems.get(0).getId());
+				}
+				
+				if (!preferences.contains(App.SELECTED_LOCATION) && locationItems.size() > 0) {
+					editor.putLong(App.SELECTED_LOCATION, locationItems.get(0).getId());
+				}
+
+				editor.commit();
+			}
+
+			@Override
+			protected void onPostExec() throws IOException {
+				startAppContent();
+			}
+		});
+	}
+	
 	private  void startAppContent() {
 		App.setCredential(credential);
 		
 		Intent intent = new Intent(this, Main.class);
 		startActivity(intent);
+		finish();
 	}
 	
 	private void setupSettings() {
@@ -70,7 +109,7 @@ public class Start extends Activity {
 		if (credential.getSelectedAccountName() == null) {
 			chooseAccount();
 		} else {
-			startAppContent();
+			load();
 		}
 	}
 
@@ -95,7 +134,7 @@ public class Start extends Activity {
 						editor.putString(PREF_ACCOUNT_NAME, accountName);
 						editor.commit();
 						
-						startAppContent();
+						load();
 					}
 				}
 				break;

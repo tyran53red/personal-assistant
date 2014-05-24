@@ -1,10 +1,10 @@
 package com.personalassistant.model;
 
-public class SettingsScheduleItem {
+public class SettingsCalendarItem {
 	private String name = null;
 	private long id = -1;
 	
-	public SettingsScheduleItem(String name, long id) {
+	public SettingsCalendarItem(String name, long id) {
 		setName(name);
 		setId(id);
 	}

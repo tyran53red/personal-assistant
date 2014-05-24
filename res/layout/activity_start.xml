@@ -3,18 +3,17 @@
     android:id="@+id/layout_load"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff"
-    android:gravity="center_vertical|center_horizontal"
+    android:background="@color/activity_background"
+    android:gravity="center"
     android:orientation="vertical"
     tools:context="${packageName}.${activityClass}" >
 
-    <TextView
-        android:id="@+id/textViewLoading"
+    <ImageView
+        android:id="@+id/loadingLogo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/title_loading_text"
-        android:textColor="@android:color/holo_blue_light"
-        android:textSize="24sp"
-        android:typeface="@android:color/holo_blue_light" />
+        android:contentDescription="@string/empty"
+        android:src="@drawable/loading_background"
+        android:background="@android:color/transparent" />
 
 </LinearLayout>
