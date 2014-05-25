@@ -36,6 +36,8 @@ public class Start extends Activity {
 	}
 	
 	private void load() {
+		App.setCredential(credential);
+		
 		App.getHandler().post(new LoadSettingsTask(this) {
 			@Override
 			protected void onPreExec() throws IOException {
@@ -46,6 +48,7 @@ public class Start extends Activity {
 			protected void onDataReady(Settings settings) throws Exception {
 				List<SettingsCalendarItem> scheduleItems = settings.getScheduleItems();
 				List<SettingsCalendarItem> locationItems = settings.getLocationItems();
+				List<SettingsCalendarItem> statusItems = settings.getStatusItems();
 				
 				SharedPreferences preferences = getSharedPreferences(App.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
 				SharedPreferences.Editor editor = preferences.edit();
@@ -56,6 +59,10 @@ public class Start extends Activity {
 				
 				if (!preferences.contains(App.SELECTED_LOCATION) && locationItems.size() > 0) {
 					editor.putLong(App.SELECTED_LOCATION, locationItems.get(0).getId());
+				}
+				
+				if (!preferences.contains(App.SELECTED_STATUS) && statusItems.size() > 0) {
+					editor.putLong(App.SELECTED_STATUS, statusItems.get(0).getId());
 				}
 
 				editor.commit();
@@ -69,8 +76,6 @@ public class Start extends Activity {
 	}
 	
 	private  void startAppContent() {
-		App.setCredential(credential);
-		
 		Intent intent = new Intent(this, Main.class);
 		startActivity(intent);
 		finish();
@@ -87,7 +92,7 @@ public class Start extends Activity {
 		if (accountName != null) {
 			credential.setSelectedAccountName(accountName);
 			User.getUser().setName(accountName);
-			startAppContent();
+			load();
 		} else if (checkGooglePlayServicesAvailable()) {
 			haveGooglePlayServices();
 		} else {

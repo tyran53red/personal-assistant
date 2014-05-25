@@ -54,5 +54,24 @@
     <string name="empty"></string>
     
     <string name="settings_schedule_text">Розклад:</string>
+    <string name="settings_status_text">Статус:</string>
     <string name="settings_location_text">Місцезнаходження:</string>
+    
+    <string name="lecturer_status_prefix">Статус:</string>
+    <string name="lecturer_status_empty">Невідомий</string>
+    <string name="lecturer_location_prefix">Місцезнаходження:</string>
+    <string name="lecturer_location_empty">Невідоме</string>
+
+    <string name="search_text">Пошук буде реалізовано в наступній версії програми</string>
+    
+    <string name="status_lab">Лабораторна</string>
+    <string name="status_lec">Лекція</string>
+    <string name="status_module">Проведення модуля</string>
+    <string name="status_check_module">Перевірка модуля</string>
+    <string name="status_exam">Проведення екзамену</string>
+    <string name="status_check_exam">Перевірка екзамену</string>
+    <string name="status_free_time">Вільний час</string>
+    <string name="status_other">Інше</string>
+    
+    <string name="status_accept">Підтвердити</string>
 </resources>

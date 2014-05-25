@@ -5,6 +5,7 @@ import java.util.List;
 public class Settings {
 	private List<SettingsCalendarItem> scheduleItems = null;
 	private List<SettingsCalendarItem> locationItems = null;
+	private List<SettingsCalendarItem> statusItems = null;
 	
 	public Settings() {
 		
@@ -24,5 +25,13 @@ public class Settings {
 
 	public void setLocationItems(List<SettingsCalendarItem> locationItems) {
 		this.locationItems = locationItems;
+	}
+
+	public List<SettingsCalendarItem> getStatusItems() {
+		return statusItems;
+	}
+
+	public void setStatusItems(List<SettingsCalendarItem> statusItems) {
+		this.statusItems = statusItems;
 	}
 }

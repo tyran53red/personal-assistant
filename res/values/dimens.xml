@@ -19,6 +19,9 @@
     <dimen name="main_list_view_row_top_text_size">18sp</dimen>
     <dimen name="main_list_view_row_top_text_middle">18sp</dimen>
     <dimen name="main_list_view_row_top_text_bottom">18sp</dimen>
+    <dimen name="lecturer_list_view_row_top_text_size">18sp</dimen>
+    <dimen name="lecturer_list_view_row_top_text_middle">18sp</dimen>
+    <dimen name="lecturer_list_view_row_top_text_bottom">18sp</dimen>
     <dimen name="location_cell_top_text_size">25sp</dimen>
     <dimen name="location_cell_middle_text_size">25sp</dimen>
     <dimen name="location_cell_padding">20dp</dimen>

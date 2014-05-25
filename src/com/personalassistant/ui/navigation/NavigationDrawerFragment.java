@@ -24,10 +24,13 @@ import android.widget.TextView;
 import com.personalassistant.R;
 import com.personalassistant.model.User;
 import com.personalassistant.model.UserRole;
+import com.personalassistant.ui.lecturers.LecturersFragment;
 import com.personalassistant.ui.location.LocationFragment;
 import com.personalassistant.ui.main.MainFragment;
+import com.personalassistant.ui.search.SearchFragment;
 import com.personalassistant.ui.settings.SettingsFragment;
 import com.personalassistant.ui.shedule.ScheduleFragment;
+import com.personalassistant.ui.status.StatusFragment;
 
 public class NavigationDrawerFragment extends Fragment {
 	private static final int USER_ITEM = 0;
@@ -144,7 +147,7 @@ public class NavigationDrawerFragment extends Fragment {
     			
     			@Override
     			public Fragment getFragment() {
-    				return new MainFragment();
+    				return new StatusFragment();
     			}
 
 				@Override
@@ -177,7 +180,7 @@ public class NavigationDrawerFragment extends Fragment {
     			
     			@Override
     			public Fragment getFragment() {
-    				return new MainFragment();
+    				return new LecturersFragment();
     			}
 
 				@Override
@@ -195,7 +198,7 @@ public class NavigationDrawerFragment extends Fragment {
 			
 			@Override
 			public Fragment getFragment() {
-				return new MainFragment();
+				return new SearchFragment();
 			}
 
 			@Override

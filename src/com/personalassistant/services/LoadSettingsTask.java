@@ -41,6 +41,7 @@ public abstract class LoadSettingsTask extends CalendarAsyncTask {
 		
 		List<SettingsCalendarItem> scheduleItems = new ArrayList<SettingsCalendarItem>();
 		List<SettingsCalendarItem> locationItems = new ArrayList<SettingsCalendarItem>();
+		List<SettingsCalendarItem> statusItems = new ArrayList<SettingsCalendarItem>();
 		
 		while (cur.moveToNext()) {
 		    long calID = -1;
@@ -56,14 +57,16 @@ public abstract class LoadSettingsTask extends CalendarAsyncTask {
 		    		scheduleItems.add(new SettingsCalendarItem(displayName, calID));
 		    	} else if (calendarType == CalendarType.LOCATION) {
 		    		locationItems.add(new SettingsCalendarItem(displayName, calID));
+		    	} else if (calendarType == CalendarType.STATUS) {
+		    		statusItems.add(new SettingsCalendarItem(displayName, calID));
 		    	}
-		    	
 		    }
 		}
 		
 		Settings settings = new Settings();
 		settings.setScheduleItems(scheduleItems);
 		settings.setLocationItems(locationItems);
+		settings.setStatusItems(statusItems);
 		
 		onDataReady(settings);
 	}

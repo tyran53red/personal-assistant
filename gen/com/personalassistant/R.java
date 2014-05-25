@@ -166,7 +166,7 @@ containing a value of this type.
     public static final class color {
         /**  Loading activity 
          */
-        public static final int activity_background=0x7f040021;
+        public static final int activity_background=0x7f040022;
         public static final int app_background=0x7f04000b;
         public static final int common_action_bar_splitter=0x7f040009;
         /**  Sign-in Button Colors 
@@ -180,11 +180,12 @@ containing a value of this type.
         public static final int common_signin_btn_light_text_disabled=0x7f040006;
         public static final int common_signin_btn_light_text_focused=0x7f040007;
         public static final int common_signin_btn_light_text_pressed=0x7f040005;
-        public static final int common_signin_btn_text_dark=0x7f040022;
-        public static final int common_signin_btn_text_light=0x7f040023;
+        public static final int common_signin_btn_text_dark=0x7f040023;
+        public static final int common_signin_btn_text_light=0x7f040024;
         public static final int global_menu_row_selected=0x7f04000c;
-        public static final int locationrow_text_color=0x7f04001a;
-        public static final int locationrow_text_color_pressed=0x7f04001b;
+        public static final int lecturer_list_view_row_text_color=0x7f040019;
+        public static final int locationrow_text_color=0x7f04001b;
+        public static final int locationrow_text_color_pressed=0x7f04001c;
         public static final int main_list_view_row_text_color=0x7f040018;
         /**  Metro colors 
          */
@@ -199,14 +200,14 @@ containing a value of this type.
         public static final int navigation_header_background=0x7f04000d;
         public static final int navigation_header_text_color=0x7f04000e;
         public static final int navigation_row_text_color=0x7f04000f;
-        public static final int schedule_list_view_row_text_color=0x7f040019;
+        public static final int schedule_list_view_row_text_color=0x7f04001a;
         /**  Single Tab 
          */
-        public static final int tab_background_color=0x7f04001c;
-        public static final int tab_bottom_pressed=0x7f040020;
-        public static final int tab_bottom_selected=0x7f04001f;
-        public static final int tab_text_color=0x7f04001d;
-        public static final int tab_text_color_selected=0x7f04001e;
+        public static final int tab_background_color=0x7f04001d;
+        public static final int tab_bottom_pressed=0x7f040021;
+        public static final int tab_bottom_selected=0x7f040020;
+        public static final int tab_text_color=0x7f04001e;
+        public static final int tab_text_color_selected=0x7f04001f;
         public static final int time_border_color=0x7f04000a;
     }
     public static final class dimen {
@@ -216,13 +217,16 @@ containing a value of this type.
          would include 7" and 10" devices in landscape (~960dp and ~1280dp respectively).
     
          */
-        public static final int activity_horizontal_margin=0x7f080017;
-        public static final int activity_vertical_margin=0x7f080018;
-        public static final int location_cell_middle_text_size=0x7f080013;
-        public static final int location_cell_padding=0x7f080014;
-        public static final int location_cell_top_text_size=0x7f080012;
-        public static final int location_tab_content_space=0x7f080016;
-        public static final int location_tab_text_size=0x7f080015;
+        public static final int activity_horizontal_margin=0x7f08001a;
+        public static final int activity_vertical_margin=0x7f08001b;
+        public static final int lecturer_list_view_row_top_text_bottom=0x7f080014;
+        public static final int lecturer_list_view_row_top_text_middle=0x7f080013;
+        public static final int lecturer_list_view_row_top_text_size=0x7f080012;
+        public static final int location_cell_middle_text_size=0x7f080016;
+        public static final int location_cell_padding=0x7f080017;
+        public static final int location_cell_top_text_size=0x7f080015;
+        public static final int location_tab_content_space=0x7f080019;
+        public static final int location_tab_text_size=0x7f080018;
         public static final int main_clock_text_size=0x7f080009;
         public static final int main_date_text_size=0x7f08000a;
         public static final int main_list_view_row_top_text_bottom=0x7f080011;
@@ -241,11 +245,11 @@ containing a value of this type.
         public static final int navigation_row_image_margin_top=0x7f080006;
         public static final int navigation_row_text_margin=0x7f080008;
         public static final int navigation_row_text_size=0x7f080004;
-        public static final int schedule_list_view_row_top_text_bottom=0x7f08001c;
-        public static final int schedule_list_view_row_top_text_middle=0x7f08001b;
-        public static final int schedule_list_view_row_top_text_size=0x7f08001a;
-        public static final int settings_text_size=0x7f08001d;
-        public static final int tab_padding=0x7f080019;
+        public static final int schedule_list_view_row_top_text_bottom=0x7f08001f;
+        public static final int schedule_list_view_row_top_text_middle=0x7f08001e;
+        public static final int schedule_list_view_row_top_text_size=0x7f08001d;
+        public static final int settings_text_size=0x7f080020;
+        public static final int tab_padding=0x7f08001c;
     }
     public static final class drawable {
         public static final int calendar=0x7f020000;
@@ -295,45 +299,54 @@ containing a value of this type.
         public static final int status=0x7f02002c;
     }
     public static final class id {
-        public static final int action_settings=0x7f050026;
-        public static final int container=0x7f050012;
-        public static final int drawer_layout=0x7f050011;
+        public static final int action_settings=0x7f05002f;
+        public static final int buttonAccept=0x7f05002e;
+        public static final int container=0x7f050018;
+        public static final int drawer_layout=0x7f050017;
         public static final int globalMenuRow=0x7f050008;
         public static final int hybrid=0x7f050004;
         public static final int imgGlobalRow=0x7f050009;
         public static final int layout_load=0x7f050005;
+        public static final int lecturer_list_layout=0x7f05000b;
+        public static final int lecturers_fragment_list_view=0x7f050010;
+        public static final int lectures_layout=0x7f05000f;
         public static final int loadingLogo=0x7f050006;
-        public static final int location=0x7f050024;
-        public static final int location_cell_middle=0x7f05000c;
-        public static final int location_cell_search=0x7f05000b;
-        public static final int location_layout=0x7f050010;
-        public static final int location_list=0x7f050025;
-        public static final int location_row=0x7f05000f;
-        public static final int location_tabs=0x7f05000d;
-        public static final int main_clock=0x7f050016;
-        public static final int main_date=0x7f050017;
-        public static final int main_fragment_list_view=0x7f050018;
-        public static final int main_layout=0x7f050014;
-        public static final int main_list_layout=0x7f050019;
-        public static final int navigation_drawer=0x7f050013;
+        public static final int location=0x7f05002a;
+        public static final int location_cell_middle=0x7f050012;
+        public static final int location_cell_search=0x7f050011;
+        public static final int location_layout=0x7f050016;
+        public static final int location_list=0x7f05002b;
+        public static final int location_row=0x7f050015;
+        public static final int location_tabs=0x7f050013;
+        public static final int main_clock=0x7f05001c;
+        public static final int main_date=0x7f05001d;
+        public static final int main_fragment_list_view=0x7f05001e;
+        public static final int main_layout=0x7f05001a;
+        public static final int main_list_layout=0x7f05001f;
+        public static final int navigation_drawer=0x7f050019;
         public static final int none=0x7f050000;
         public static final int normal=0x7f050001;
-        public static final int pager=0x7f05000e;
+        public static final int pager=0x7f050014;
+        public static final int radioGroupStatus=0x7f05002d;
         public static final int satellite=0x7f050002;
-        public static final int schedule=0x7f050022;
-        public static final int schedule_layout=0x7f050020;
-        public static final int schedule_list=0x7f050023;
-        public static final int schedule_list_layout=0x7f05001f;
-        public static final int schedule_tabs=0x7f05001e;
-        public static final int schedule_tabs_scroll=0x7f05001d;
-        public static final int settings_layout=0x7f050021;
+        public static final int schedule=0x7f050026;
+        public static final int schedule_layout=0x7f050023;
+        public static final int schedule_list=0x7f050027;
+        public static final int schedule_list_layout=0x7f050022;
+        public static final int schedule_tabs=0x7f050021;
+        public static final int schedule_tabs_scroll=0x7f050020;
+        public static final int scrollRadioGroup=0x7f05002c;
+        public static final int search=0x7f050025;
+        public static final int status=0x7f050028;
+        public static final int status_layout=0x7f050024;
+        public static final int status_list=0x7f050029;
         public static final int terrain=0x7f050003;
-        public static final int time_layout=0x7f050015;
-        public static final int txtBottom=0x7f05001c;
+        public static final int time_layout=0x7f05001b;
+        public static final int txtBottom=0x7f05000e;
         public static final int txtGlobalHeader=0x7f050007;
         public static final int txtGlobalRow=0x7f05000a;
-        public static final int txtMiddle=0x7f05001b;
-        public static final int txtTop=0x7f05001a;
+        public static final int txtMiddle=0x7f05000d;
+        public static final int txtTop=0x7f05000c;
     }
     public static final class integer {
         public static final int google_play_services_version=0x7f070000;
@@ -343,19 +356,24 @@ containing a value of this type.
         public static final int fragment_navigation_drawer=0x7f030001;
         public static final int global_navigation_header=0x7f030002;
         public static final int global_navigation_row=0x7f030003;
-        public static final int location_cell=0x7f030004;
-        public static final int location_cell_search=0x7f030005;
-        public static final int location_fragment=0x7f030006;
-        public static final int location_row=0x7f030007;
-        public static final int location_tab_content=0x7f030008;
-        public static final int main=0x7f030009;
-        public static final int main_fragment=0x7f03000a;
-        public static final int main_list_view_row=0x7f03000b;
-        public static final int schedule_fragment=0x7f03000c;
-        public static final int schedule_list_view_row=0x7f03000d;
-        public static final int schedule_tab_content=0x7f03000e;
-        public static final int settings_fragment=0x7f03000f;
-        public static final int single_tab_indicator=0x7f030010;
+        public static final int lecturer_list_view_row=0x7f030004;
+        public static final int lecturers_fragment=0x7f030005;
+        public static final int location_cell=0x7f030006;
+        public static final int location_cell_search=0x7f030007;
+        public static final int location_fragment=0x7f030008;
+        public static final int location_row=0x7f030009;
+        public static final int location_tab_content=0x7f03000a;
+        public static final int main=0x7f03000b;
+        public static final int main_fragment=0x7f03000c;
+        public static final int main_list_view_row=0x7f03000d;
+        public static final int schedule_fragment=0x7f03000e;
+        public static final int schedule_list_view_row=0x7f03000f;
+        public static final int schedule_tab_content=0x7f030010;
+        public static final int search_fragment=0x7f030011;
+        public static final int settings_fragment=0x7f030012;
+        public static final int single_tab_indicator=0x7f030013;
+        public static final int status_fragment=0x7f030014;
+        public static final int status_radio_button=0x7f030015;
     }
     public static final class menu {
         public static final int location=0x7f0a0000;
@@ -472,6 +490,10 @@ containing a value of this type.
         public static final int january_r=0x7f060030;
         public static final int july_r=0x7f060036;
         public static final int june_r=0x7f060035;
+        public static final int lecturer_location_empty=0x7f06004b;
+        public static final int lecturer_location_prefix=0x7f06004a;
+        public static final int lecturer_status_empty=0x7f060049;
+        public static final int lecturer_status_prefix=0x7f060048;
         public static final int lecturers_item=0x7f060020;
         public static final int location_cell_search=0x7f06003c;
         /**  Location client code resources (prefix with location_client) 
@@ -495,11 +517,22 @@ containing a value of this type.
         public static final int sat=0x7f06002f;
         public static final int schedule_item=0x7f06001e;
         public static final int search_item=0x7f060022;
+        public static final int search_text=0x7f06004c;
         public static final int september_r=0x7f060038;
         public static final int settings_item=0x7f060023;
-        public static final int settings_location_text=0x7f060046;
+        public static final int settings_location_text=0x7f060047;
         public static final int settings_schedule_text=0x7f060045;
+        public static final int settings_status_text=0x7f060046;
+        public static final int status_accept=0x7f060055;
+        public static final int status_check_exam=0x7f060052;
+        public static final int status_check_module=0x7f060050;
+        public static final int status_exam=0x7f060051;
+        public static final int status_free_time=0x7f060053;
         public static final int status_item=0x7f06001f;
+        public static final int status_lab=0x7f06004d;
+        public static final int status_lec=0x7f06004e;
+        public static final int status_module=0x7f06004f;
+        public static final int status_other=0x7f060054;
         /**  Days shortcut 
          */
         public static final int sun=0x7f060029;

@@ -21,6 +21,7 @@
     <color name="metro_color_094AB2">#094AB2</color>
     
     <color name="main_list_view_row_text_color">#FFFFFF</color>
+    <color name="lecturer_list_view_row_text_color">#FFFFFF</color>
     <color name="schedule_list_view_row_text_color">#FFFFFF</color>
     
     <color name="locationrow_text_color">#FFFFFF</color>
