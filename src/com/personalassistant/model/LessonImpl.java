@@ -1,20 +1,22 @@
 package com.personalassistant.model;
 
-public class AbstractLesson implements Lesson {
+public class LessonImpl implements Lesson {
 	private String name = null;
 	private LessonType type = null;
 	private int corp = -1;
 	private int auditory = -1;
+	private String middle = null;
 	
-	public AbstractLesson() {
+	public LessonImpl() {
 		
 	}
 	
-	public AbstractLesson(String name, LessonType type, int corp, int auditory) {
+	public LessonImpl(String name, LessonType type, int corp, int auditory, String middle) {
 		setName(name);
 		setLessonType(type);
 		setCorp(corp);
 		setAuditory(auditory);
+		setMiddle(middle);
 	}
 	
 	@Override
@@ -55,5 +57,15 @@ public class AbstractLesson implements Lesson {
 	@Override
 	public void setAuditory(int auditory) {
 		this.auditory = auditory;
+	}
+
+	@Override
+	public String getMiddle() {
+		return middle;
+	}
+
+	@Override
+	public void setMiddle(String middle) {
+		this.middle = middle;
 	}
 }

@@ -34,7 +34,7 @@ public abstract class CreateStatusEvent extends CalendarAsyncTask {
 			eventValues.put(Events.CALENDAR_ID, value);
 			eventValues.put(Events.TITLE, User.getUser().getName());
 			eventValues.put(Events.DESCRIPTION,
-					"[user-name:" + User.getUser().getName() + "][status:" + status.getIdentifier() + "]");
+					"[" + CalendarsConstants.USER_NAME + ":" + User.getUser().getName() + "][" + CalendarsConstants.STATUS + ":" + status.getIdentifier() + "]");
 			eventValues.put(Events.EVENT_LOCATION, TimeZone.getDefault().getID());
 			eventValues.put(Events.EVENT_TIMEZONE, TimeZone.getDefault().getID());
 			

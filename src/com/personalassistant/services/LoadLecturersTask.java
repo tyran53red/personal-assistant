@@ -3,6 +3,7 @@ package com.personalassistant.services;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Map;
 
 import android.app.Activity;
 import android.content.ContentResolver;
@@ -15,6 +16,7 @@ import com.personalassistant.App;
 import com.personalassistant.model.Auditory;
 import com.personalassistant.model.Status;
 import com.personalassistant.ui.lecturers.LecturersListItem;
+import com.personalassistant.ui.util.DataToolkit;
 
 public abstract class LoadLecturersTask extends CalendarAsyncTask {
 	public static final String[] EVENT_PROJECTION = new String[] {
@@ -79,10 +81,10 @@ public abstract class LoadLecturersTask extends CalendarAsyncTask {
 				String description = cursor.getString(DESCRIPTION);
 				
 				if (description != null && description.length() > 0) {
-					String[] splitDescription = split(description, '[');
+					Map<String, String> attributes = DataToolkit.getEventAttributes(description);
 					
-					if (splitDescription.length > 1 && splitDescription[0].startsWith("user-name") && splitDescription[1].startsWith("status")) {
-						String userName = splitDescription[0].substring("user-name".length() + 1, splitDescription[0].length() - 1);
+					if (attributes.containsKey(CalendarsConstants.USER_NAME) && attributes.containsKey(CalendarsConstants.STATUS)) {
+						String userName = attributes.get(CalendarsConstants.USER_NAME);
 						LecturersListItem item = findItem(userName);
 						
 						if (item == null) {
@@ -90,7 +92,7 @@ public abstract class LoadLecturersTask extends CalendarAsyncTask {
 							lecturersListItems.add(item);
 						}
 						
-						String statusIdentifier = splitDescription[1].substring("status".length() + 1, splitDescription[1].length() - 1);
+						String statusIdentifier = attributes.get(CalendarsConstants.STATUS);
 						
 						Status status = null;
 						for (Status s : App.getDefaultStatuses(activity)) {
@@ -124,11 +126,10 @@ public abstract class LoadLecturersTask extends CalendarAsyncTask {
 				String description = cursor.getString(DESCRIPTION);
 				
 				if (description != null && description.length() > 0) {
-					String[] splitDescription = split(description, '[');
+					Map<String, String> attributes = DataToolkit.getEventAttributes(description);
 					
-					if (splitDescription.length > 2 && splitDescription[0].startsWith("user-name") && splitDescription[1].startsWith("corp")
-							 && splitDescription[2].startsWith("number")) {
-						String userName = splitDescription[0].substring("user-name".length() + 1, splitDescription[0].length() - 1);
+					if (attributes.containsKey(CalendarsConstants.USER_NAME) && attributes.containsKey(CalendarsConstants.CORP) && attributes.containsKey(CalendarsConstants.NUMBER)) {
+						String userName = attributes.get(CalendarsConstants.USER_NAME);
 						LecturersListItem item = findItem(userName);
 						
 						if (item == null) {
@@ -136,8 +137,8 @@ public abstract class LoadLecturersTask extends CalendarAsyncTask {
 							lecturersListItems.add(item);
 						}
 						
-						String corp = splitDescription[1].substring("corp".length() + 1, splitDescription[1].length() - 1);
-						String number = splitDescription[2].substring("number".length() + 1, splitDescription[2].length() - 1);
+						String corp = attributes.get(CalendarsConstants.CORP);
+						String number = attributes.get(CalendarsConstants.NUMBER);
 						
 						item.setAuditory(new Auditory(Integer.parseInt(number), Integer.parseInt(corp)));
 					}
@@ -146,29 +147,6 @@ public abstract class LoadLecturersTask extends CalendarAsyncTask {
 		}
 		
 		onDayLoaded(lecturersListItems);
-	}
-	
-	private String[] split(String string, char pattern) {
-		List<String> result = new ArrayList<String>();
-		
-		String tempString = new String();
-		for (char c : string.toCharArray()) {
-			if (c == pattern) {
-				if (tempString.length() > 0) {
-					result.add(new String(tempString));
-				}
-				
-				tempString = new String();
-			} else {
-				tempString += c;
-			}
-		}
-		
-		if (tempString.length() > 0) {
-			result.add(new String(tempString));
-		}
-		
-		return result.toArray(new String[0]);
 	}
 	
 	private LecturersListItem findItem(String userName) {

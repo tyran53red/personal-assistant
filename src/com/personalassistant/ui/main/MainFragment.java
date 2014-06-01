@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.personalassistant.App;
 import com.personalassistant.R;
-import com.personalassistant.model.AbstractLesson;
+import com.personalassistant.model.LessonImpl;
 import com.personalassistant.services.LoadScheduleTask;
 import com.personalassistant.ui.util.UIToolkit;
 
@@ -70,11 +70,11 @@ public class MainFragment extends Fragment {
 			}
 			
 			@Override
-			protected void onDayLoaded(List<AbstractLesson> lessons) {
+			protected void onDayLoaded(List<LessonImpl> lessons) {
 				MainListItem mainListItem[] = new MainListItem[lessons.size()];
 				
 				int counter = 0;
-				for (AbstractLesson lesson : lessons) {
+				for (LessonImpl lesson : lessons) {
 					mainListItem[counter++] = new MainListItem(lesson);
 				}
 				

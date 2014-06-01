@@ -7,6 +7,8 @@ public class Settings {
 	private List<SettingsCalendarItem> locationItems = null;
 	private List<SettingsCalendarItem> statusItems = null;
 	
+	private String userFullName = null;
+	
 	public Settings() {
 		
 	}
@@ -33,5 +35,13 @@ public class Settings {
 
 	public void setStatusItems(List<SettingsCalendarItem> statusItems) {
 		this.statusItems = statusItems;
+	}
+
+	public String getUserFullName() {
+		return userFullName;
+	}
+
+	public void setUserFullName(String userFullName) {
+		this.userFullName = userFullName;
 	}
 }

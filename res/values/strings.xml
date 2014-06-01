@@ -74,4 +74,7 @@
     <string name="status_other">Інше</string>
     
     <string name="status_accept">Підтвердити</string>
+
+    <string name="role_lecturer">Лектор</string>
+    <string name="role_student">Студент</string>
 </resources>

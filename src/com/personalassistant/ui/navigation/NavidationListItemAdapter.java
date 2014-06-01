@@ -15,14 +15,25 @@ import com.personalassistant.R;
 public class NavidationListItemAdapter extends ArrayAdapter<NavigationMenuItem> {
 	private Context context; 
 	private int layoutResourceId;    
-	private NavigationMenuItem data[] = null;
+	private NavigationMenuItem menu[] = null;
 	
-	public NavidationListItemAdapter(Context context, int layoutResourceId, NavigationMenuItem[] data) {
-		super(context, layoutResourceId, data);
+	public NavidationListItemAdapter(Context context, int layoutResourceId, NavigationMenuItem[] menu) {
+		super(context, layoutResourceId);
 		
 		this.context = context;
 		this.layoutResourceId = layoutResourceId;
-		this.data = data;
+		this.menu = menu;
+	}
+	
+	public void setMenu(NavigationMenuItem[] menu) {
+		this.menu = menu;
+		
+		notifyDataSetChanged();
+	}
+
+	@Override
+	public int getCount() {
+		return menu.length;
 	}
 
 	@Override
@@ -45,7 +56,7 @@ public class NavidationListItemAdapter extends ArrayAdapter<NavigationMenuItem> 
             holder = (Holder)row.getTag();
         }
         
-        NavigationMenuItem item = data[position];
+        NavigationMenuItem item = menu[position];
         holder.txtGlobalRow.setText(item.getName());
         holder.imgGlobalRow.setCompoundDrawablesWithIntrinsicBounds(item.getIcon(), 0, 0, 0);
         
@@ -63,7 +74,7 @@ public class NavidationListItemAdapter extends ArrayAdapter<NavigationMenuItem> 
 	}
 	
 	public NavigationMenuItem getItem(int position) {
-		return data[position];
+    	return menu[position];
 	}
 	
 	private class Holder {

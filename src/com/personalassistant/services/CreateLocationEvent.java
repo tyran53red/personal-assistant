@@ -34,7 +34,7 @@ public abstract class CreateLocationEvent extends CalendarAsyncTask {
 			eventValues.put(Events.CALENDAR_ID, value);
 			eventValues.put(Events.TITLE, User.getUser().getName());
 			eventValues.put(Events.DESCRIPTION,
-					"[user-name:" + User.getUser().getName() + "][corp:" + auditory.getCorp() + "][number:" + auditory.getNumber() + "]");
+					"[" + CalendarsConstants.USER_NAME + ":" + User.getUser().getName() + "][" + CalendarsConstants.CORP + ":" + auditory.getCorp() + "][" + CalendarsConstants.NUMBER + ":" + auditory.getNumber() + "]");
 			eventValues.put(Events.EVENT_LOCATION, TimeZone.getDefault().getID());
 			eventValues.put(Events.EVENT_TIMEZONE, TimeZone.getDefault().getID());
 			

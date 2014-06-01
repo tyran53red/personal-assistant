@@ -26,11 +26,13 @@ public class App {
 			return null;
 		}
 	}
+
 	
 	public static String SHARED_PREFERENCES_NAME = "PASPF";
 	public static String SELECTED_SCHEDULE = "selected-schedule";
 	public static String SELECTED_LOCATION = "selected-location";
 	public static String SELECTED_STATUS = "selected-status";
+	public static String SELECTED_USER_ROLE = "selected-user-role";
 	
 	private static GoogleAccountCredential credential = null;
 	private static Map<CalendarType, Integer> calendars = null;

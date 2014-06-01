@@ -21,7 +21,7 @@ public class ScheduleListItem {
 	}
 	
 	public String getMiddleText() {
-		return "Middle";
+		return lesson.getMiddle();
 	}
 	
 	public String getBottomText() {

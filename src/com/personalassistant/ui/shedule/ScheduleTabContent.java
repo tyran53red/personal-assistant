@@ -12,7 +12,7 @@ import android.widget.ListView;
 
 import com.personalassistant.App;
 import com.personalassistant.R;
-import com.personalassistant.model.AbstractLesson;
+import com.personalassistant.model.LessonImpl;
 import com.personalassistant.services.LoadScheduleTask;
 
 public class ScheduleTabContent extends Fragment {
@@ -53,11 +53,11 @@ public class ScheduleTabContent extends Fragment {
 			}
 			
 			@Override
-			protected void onDayLoaded(List<AbstractLesson> lessons) {
+			protected void onDayLoaded(List<LessonImpl> lessons) {
 				ScheduleListItem scheduleListItem[] = new ScheduleListItem[lessons.size()];
 				
 				int counter = 0;
-				for (AbstractLesson lesson : lessons) {
+				for (LessonImpl lesson : lessons) {
 					scheduleListItem[counter++] = new ScheduleListItem(lesson);
 				}
 				

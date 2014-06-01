@@ -19,7 +19,9 @@ import com.personalassistant.R;
 import com.personalassistant.model.Settings;
 import com.personalassistant.model.SettingsCalendarItem;
 import com.personalassistant.model.User;
+import com.personalassistant.model.UserRole;
 import com.personalassistant.services.LoadSettingsTask;
+import com.personalassistant.ui.settings.SettingsFragment;
 
 public class Start extends Activity {
 	private static final String PREF_ACCOUNT_NAME = "accountName";
@@ -46,6 +48,8 @@ public class Start extends Activity {
 			
 			@Override
 			protected void onDataReady(Settings settings) throws Exception {
+				User.getUser().setName(settings.getUserFullName());
+				
 				List<SettingsCalendarItem> scheduleItems = settings.getScheduleItems();
 				List<SettingsCalendarItem> locationItems = settings.getLocationItems();
 				List<SettingsCalendarItem> statusItems = settings.getStatusItems();
@@ -63,6 +67,17 @@ public class Start extends Activity {
 				
 				if (!preferences.contains(App.SELECTED_STATUS) && statusItems.size() > 0) {
 					editor.putLong(App.SELECTED_STATUS, statusItems.get(0).getId());
+				}
+				
+				if (!preferences.contains(App.SELECTED_USER_ROLE)) {
+					editor.putInt(App.SELECTED_USER_ROLE, 0);
+				}
+				
+				int role = preferences.getInt(App.SELECTED_USER_ROLE, 0);
+				if (role == SettingsFragment.LECTURER) {
+					User.getUser().setRole(UserRole.LECTURER);
+				} else if (role == SettingsFragment.STUDENT) {
+					User.getUser().setRole(UserRole.STUDENT);
 				}
 
 				editor.commit();
@@ -91,7 +106,6 @@ public class Start extends Activity {
 		
 		if (accountName != null) {
 			credential.setSelectedAccountName(accountName);
-			User.getUser().setName(accountName);
 			load();
 		} else if (checkGooglePlayServicesAvailable()) {
 			haveGooglePlayServices();

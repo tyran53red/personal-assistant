@@ -9,4 +9,6 @@ public interface Lesson {
 	public void setCorp(int corp);
 	public int getAuditory();
 	public void setAuditory(int auditory);
+	public String getMiddle();
+	public void setMiddle(String middle);
 }

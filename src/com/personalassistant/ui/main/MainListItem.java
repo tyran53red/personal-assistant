@@ -21,7 +21,7 @@ public class MainListItem {
 	}
 	
 	public String getMiddleText() {
-		return "Middle";
+		return lesson.getMiddle();
 	}
 	
 	public String getBottomText() {

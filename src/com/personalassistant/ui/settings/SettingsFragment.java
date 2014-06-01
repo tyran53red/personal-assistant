@@ -11,20 +11,29 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
 import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
+import android.widget.RadioGroup;
+import android.widget.RadioGroup.OnCheckedChangeListener;
+import android.widget.Spinner;
 
 import com.personalassistant.App;
 import com.personalassistant.R;
 import com.personalassistant.model.Settings;
 import com.personalassistant.model.SettingsCalendarItem;
+import com.personalassistant.model.User;
+import com.personalassistant.model.UserRole;
 import com.personalassistant.services.LoadSettingsTask;
 
 public class SettingsFragment extends Fragment {
+	public static final int LECTURER = 0;
+	public static final int STUDENT = 1;
+	
 	private Spinner spnSchedule = null;
 	private Spinner spnStatus = null;
 	private Spinner spnLocation = null;
+	
+	private RadioGroup radioGroupRole = null;
 	
 	private ArrayAdapter<SettingsCalendarItem> scheduleAdapter = null;
 	private ArrayAdapter<SettingsCalendarItem> statusAdapter = null;
@@ -37,6 +46,7 @@ public class SettingsFragment extends Fragment {
 		spnSchedule = (Spinner)inflate.findViewById(R.id.schedule_list);
 		spnStatus = (Spinner)inflate.findViewById(R.id.status_list);
 		spnLocation = (Spinner)inflate.findViewById(R.id.location_list);
+		radioGroupRole = (RadioGroup)inflate.findViewById(R.id.radioGroupRole);
 		
 		scheduleAdapter = new ArrayAdapter<SettingsCalendarItem>(getActivity(), android.R.layout.simple_spinner_item);
 		scheduleAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -100,6 +110,29 @@ public class SettingsFragment extends Fragment {
 			@Override
 			public void onNothingSelected(AdapterView<?> parent) {
 				
+			}
+		});
+		
+		radioGroupRole.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(RadioGroup group, int checkedId) {
+				int indexOfChild = group.indexOfChild(group.findViewById(checkedId));
+				
+				SharedPreferences preferences = getActivity().getSharedPreferences(App.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
+				SharedPreferences.Editor editor = preferences.edit();
+
+				int value = LECTURER;
+				
+				if (indexOfChild == LECTURER) {
+					User.getUser().setRole(UserRole.LECTURER);
+					value = LECTURER;
+				} else if (indexOfChild == STUDENT) {
+					User.getUser().setRole(UserRole.STUDENT);
+					value = STUDENT;
+				}
+				
+				editor.putInt(App.SELECTED_USER_ROLE, value);
+				editor.commit();
 			}
 		});
 		
@@ -167,6 +200,15 @@ public class SettingsFragment extends Fragment {
 						}
 						
 						counter++;
+					}
+				}
+				
+				if (preferences.contains(App.SELECTED_USER_ROLE)) {
+					int i = preferences.getInt(App.SELECTED_USER_ROLE, 0);
+					if (i == LECTURER) {
+						radioGroupRole.check(R.id.lecturer);
+					} else if (i == STUDENT) {
+						radioGroupRole.check(R.id.student);
 					}
 				}
 			}

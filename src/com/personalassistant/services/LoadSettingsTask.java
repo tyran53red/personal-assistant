@@ -8,6 +8,7 @@ import android.content.ContentResolver;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.CalendarContract.Calendars;
+import android.provider.ContactsContract;
 
 import com.personalassistant.App;
 import com.personalassistant.App.CalendarType;
@@ -19,9 +20,14 @@ public abstract class LoadSettingsTask extends CalendarAsyncTask {
 	    Calendars._ID,
 	    Calendars.CALENDAR_DISPLAY_NAME,
 	};
+	
+	public static final String[] PROFILE_PROJECTION = new String[] {
+		ContactsContract.Profile.DISPLAY_NAME,
+	};
 	  
 	private static final int PROJECTION_ID_INDEX = 0;
 	private static final int PROJECTION_DISPLAY_NAME_INDEX = 1;
+	private static final int PROFILE_PROJECTION_DISPLAY_NAME = 0;
 	
 	private Activity activity = null;
 	
@@ -63,7 +69,16 @@ public abstract class LoadSettingsTask extends CalendarAsyncTask {
 		    }
 		}
 		
+		cur = activity.getContentResolver().query(ContactsContract.Profile.CONTENT_URI, PROFILE_PROJECTION, null, null, null);
+		
+		String userFullName = null;
+		if (cur.getCount() > 0) {
+			cur.moveToFirst();
+			userFullName = cur.getString(PROFILE_PROJECTION_DISPLAY_NAME);
+		}
+
 		Settings settings = new Settings();
+		settings.setUserFullName(userFullName);
 		settings.setScheduleItems(scheduleItems);
 		settings.setLocationItems(locationItems);
 		settings.setStatusItems(statusItems);

@@ -299,14 +299,15 @@ containing a value of this type.
         public static final int status=0x7f02002c;
     }
     public static final class id {
-        public static final int action_settings=0x7f05002f;
-        public static final int buttonAccept=0x7f05002e;
+        public static final int action_settings=0x7f050032;
+        public static final int buttonAccept=0x7f050031;
         public static final int container=0x7f050018;
         public static final int drawer_layout=0x7f050017;
         public static final int globalMenuRow=0x7f050008;
         public static final int hybrid=0x7f050004;
         public static final int imgGlobalRow=0x7f050009;
         public static final int layout_load=0x7f050005;
+        public static final int lecturer=0x7f05002d;
         public static final int lecturer_list_layout=0x7f05000b;
         public static final int lecturers_fragment_list_view=0x7f050010;
         public static final int lectures_layout=0x7f05000f;
@@ -327,7 +328,8 @@ containing a value of this type.
         public static final int none=0x7f050000;
         public static final int normal=0x7f050001;
         public static final int pager=0x7f050014;
-        public static final int radioGroupStatus=0x7f05002d;
+        public static final int radioGroupRole=0x7f05002c;
+        public static final int radioGroupStatus=0x7f050030;
         public static final int satellite=0x7f050002;
         public static final int schedule=0x7f050026;
         public static final int schedule_layout=0x7f050023;
@@ -335,11 +337,12 @@ containing a value of this type.
         public static final int schedule_list_layout=0x7f050022;
         public static final int schedule_tabs=0x7f050021;
         public static final int schedule_tabs_scroll=0x7f050020;
-        public static final int scrollRadioGroup=0x7f05002c;
+        public static final int scrollRadioGroup=0x7f05002f;
         public static final int search=0x7f050025;
         public static final int status=0x7f050028;
         public static final int status_layout=0x7f050024;
         public static final int status_list=0x7f050029;
+        public static final int student=0x7f05002e;
         public static final int terrain=0x7f050003;
         public static final int time_layout=0x7f05001b;
         public static final int txtBottom=0x7f05000e;
@@ -513,6 +516,8 @@ containing a value of this type.
         public static final int navigation_drawer_open=0x7f060024;
         public static final int november_r=0x7f06003a;
         public static final int october_r=0x7f060039;
+        public static final int role_lecturer=0x7f060056;
+        public static final int role_student=0x7f060057;
         public static final int row_image_default_text=0x7f060026;
         public static final int sat=0x7f06002f;
         public static final int schedule_item=0x7f06001e;

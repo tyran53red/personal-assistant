@@ -23,6 +23,7 @@ import android.widget.TextView;
 
 import com.personalassistant.R;
 import com.personalassistant.model.User;
+import com.personalassistant.model.User.UserHandler;
 import com.personalassistant.model.UserRole;
 import com.personalassistant.ui.lecturers.LecturersFragment;
 import com.personalassistant.ui.location.LocationFragment;
@@ -90,6 +91,14 @@ public class NavigationDrawerFragment extends Fragment {
 			}
         };
 		mDrawerListView.setAdapter(adapter);
+		
+		User.getUser().addHandler(new UserHandler() {
+			@Override
+			public void onUserRoleChanged() {
+				adapter.setMenu(createGlobalMenu());
+				mCurrentSelectedPosition = adapter.getCount();
+			}
+		});
         
         TextView header = (TextView)getActivity().getLayoutInflater().inflate(R.layout.global_navigation_header, null);
         header.setText(User.getUser().getName());

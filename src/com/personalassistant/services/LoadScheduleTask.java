@@ -3,6 +3,7 @@ package com.personalassistant.services;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Map;
 
 import android.app.Activity;
 import android.content.ContentResolver;
@@ -12,8 +13,9 @@ import android.database.Cursor;
 import android.provider.CalendarContract.Events;
 
 import com.personalassistant.App;
-import com.personalassistant.model.AbstractLesson;
+import com.personalassistant.model.LessonImpl;
 import com.personalassistant.model.LessonType;
+import com.personalassistant.ui.util.DataToolkit;
 
 public abstract class LoadScheduleTask extends CalendarAsyncTask {
 	public static final String[] EVENT_PROJECTION = new String[] {
@@ -21,8 +23,12 @@ public abstract class LoadScheduleTask extends CalendarAsyncTask {
 		Events.DTSTART,
 		Events.DTEND,
 		Events.RRULE,
-		Events.TITLE
+		Events.TITLE,
+		Events.DESCRIPTION
 	};
+	
+	public static final int TITLE = 4;
+	public static final int DESCRIPTION = 5;
 	
 	public static final String ORDER = Events.DTSTART;
 //	public static final String WHERE = "((" + Events.CALENDAR_ID + " = ?) AND (" + Events.DTSTART + " >= ?) AND (" + Events.DTEND + " <= ?))";
@@ -63,31 +69,32 @@ public abstract class LoadScheduleTask extends CalendarAsyncTask {
 					WHERE,
 					new String[] {
 						String.valueOf(value),
-						// String.valueOf(calendarStart.getTimeInMillis()),
-						// String.valueOf(calendarEnd.getTimeInMillis())
 					},
 					ORDER);
 			
 			
-			List<AbstractLesson> lessons = new ArrayList<AbstractLesson>();
+			List<LessonImpl> lessons = new ArrayList<LessonImpl>();
 			while(cursor.moveToNext()) {
-				AbstractLesson lesson = new AbstractLesson();
-				lesson.setName(cursor.getString(4));
-			/*	
-				Calendar calendar = Calendar.getInstance();
-				calendar.setTimeInMillis(cursor.getLong(1));
+				String description = cursor.getString(DESCRIPTION);
+				Map<String, String> attributes = DataToolkit.getEventAttributes(description);
 
-				String date = "" + calendarStart.get(Calendar.DAY_OF_MONTH) + "-" + calendarStart.get(Calendar.MONTH) + "-" + calendarStart.get(Calendar.YEAR) + "";
-				String date2 = "" + calendar.get(Calendar.DAY_OF_MONTH) + "-" + calendar.get(Calendar.MONTH) + "-" + calendar.get(Calendar.YEAR) + "";
-				*/
-				lesson.setLessonType(LessonType.LAB);
-				
-				lessons.add(lesson);
+				if (attributes.containsKey(CalendarsConstants.MIDDLE) && attributes.containsKey(CalendarsConstants.CORP)
+					&& attributes.containsKey(CalendarsConstants.NUMBER) && attributes.containsKey(CalendarsConstants.TYPE)) {
+					LessonImpl lesson = new LessonImpl();
+					
+					lesson.setName(cursor.getString(TITLE));
+					lesson.setCorp(Integer.parseInt(attributes.get(CalendarsConstants.CORP)));
+					lesson.setAuditory(Integer.parseInt(attributes.get(CalendarsConstants.NUMBER)));
+					lesson.setLessonType(LessonType.decode(attributes.get(CalendarsConstants.TYPE)));
+					lesson.setMiddle(attributes.get(CalendarsConstants.MIDDLE));
+					
+					lessons.add(lesson);
+				}
 			}
 		
 			onDayLoaded(lessons);
 		}
 	}
 
-	protected abstract void onDayLoaded(List<AbstractLesson> lessons);
+	protected abstract void onDayLoaded(List<LessonImpl> lessons);
 }
