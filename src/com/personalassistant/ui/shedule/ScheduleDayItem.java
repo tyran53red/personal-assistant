@@ -13,8 +13,6 @@ public class ScheduleDayItem {
 	public static String MONTH = "month";
 	public static String DAY = "day";
 	
-	private Fragment tabContent = null; 
-	
 	private Calendar day = null;
 	
 	public ScheduleDayItem(Calendar day) {
@@ -22,15 +20,13 @@ public class ScheduleDayItem {
 	}
 	
 	public Fragment getFragment() {
-		if (tabContent == null) {
-			tabContent = new ScheduleTabContent();
-			
-			Bundle args = new Bundle();
-			args.putInt(YEAR, day.get(Calendar.YEAR));
-			args.putInt(MONTH, day.get(Calendar.MONTH));
-			args.putInt(DAY, day.get(Calendar.DAY_OF_MONTH));
-			tabContent.setArguments(args);
-		}
+		Fragment tabContent = new ScheduleTabContent();
+		
+		Bundle args = new Bundle();
+		args.putInt(YEAR, day.get(Calendar.YEAR));
+		args.putInt(MONTH, day.get(Calendar.MONTH));
+		args.putInt(DAY, day.get(Calendar.DAY_OF_MONTH));
+		tabContent.setArguments(args);
 
 	    return tabContent;
 	}
