@@ -76,6 +76,11 @@ public abstract class LoadScheduleTask extends CalendarAsyncTask {
 			List<LessonImpl> lessons = new ArrayList<LessonImpl>();
 			while(cursor.moveToNext()) {
 				String description = cursor.getString(DESCRIPTION);
+				
+				if (description == null) {
+					continue;
+				}
+				
 				Map<String, String> attributes = DataToolkit.getEventAttributes(description);
 
 				if (attributes.containsKey(CalendarsConstants.MIDDLE) && attributes.containsKey(CalendarsConstants.CORP)
